@@ -1,8 +1,8 @@
 export const companyInfo = {
-  name: 'Construz',
+  name: 'Engineers',
   tagline: 'Modern construction, engineering, and property solutions.',
   phone: '+123 556 8824',
-  secondaryPhone: '+121 551 579 266',
+  secondaryPhone: '+91 9061 686 999',
   email: 'support@gmail.com',
   address: '96 Jones Street, New York, USA',
   website: 'https://example.com',

@@ -62,7 +62,7 @@ export function getPageHtml(fileName: string) {
 
 export function getPageTitle(fileName: string) {
   const source = readSource(fileName);
-  const title = source.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1] ?? 'Construz';
+  const title = source.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1] ?? 'Engineers';
   return title.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
