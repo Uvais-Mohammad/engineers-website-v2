@@ -6,6 +6,8 @@ const sharedSource = readSource('index.html');
 
 const routeMap: Record<string, string> = {
   'index.html': '/',
+  'home-4.html': '/',
+  'home-4-op.html': '/',
   'about.html': '/about/',
   'service.html': '/services/',
   'service-details.html': '/service-details/',
@@ -21,7 +23,6 @@ const routeMap: Record<string, string> = {
   'contact.html': '/contact/',
   'blog.html': '/blog/',
   'blog-details.html': '/blog/construction-process-streamlines/',
-  'home-4.html': '/home-4/',
 };
 
 function readSource(fileName: string) {

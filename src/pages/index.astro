@@ -1,19 +1,10 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import CTA from '../components/CTA.astro';
-import Hero from '../components/Hero.astro';
-import { companyInfo } from '../data/company';
-import { getIndexAfterHeroHtml, getIndexHeroHtml } from '../utils/theme';
-
-const heroHtml = getIndexHeroHtml();
-const restHtml = getIndexAfterHeroHtml();
+import ThemePage from '../components/ThemePage.astro';
 ---
 
-<BaseLayout
-  title={`${companyInfo.name} | Home`}
-  description="Construction company homepage converted to Astro with the original visual layout, theme assets, and interactions preserved."
+<ThemePage
+  fileName="index.html"
+  title="Home"
+  description="Source homepage retained from the original theme."
   canonical="/"
->
-  <Hero html={heroHtml} />
-  <CTA html={restHtml} />
-</BaseLayout>
+/>
