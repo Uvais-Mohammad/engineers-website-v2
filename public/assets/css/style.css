@@ -1908,6 +1908,10 @@ textarea.is-invalid {
 .mobile-menu-wrapper .mobile-logo svg {
   max-width: 185px;
 }
+.mobile-menu-wrapper .mobile-logo img {
+  max-width: 150px;
+  height: auto;
+}
 .mobile-menu-wrapper .menu-toggle {
   border: 0;
   border-left: 1px solid var(--theme-color);
@@ -5514,6 +5518,10 @@ ul.wp-block-latest-posts li:last-child {
 .header-logo {
   padding-top: 15px;
   padding-bottom: 15px;
+}
+.header-logo img {
+  max-width: 250px;
+  height: auto;
 }
 
 .header-links > ul {

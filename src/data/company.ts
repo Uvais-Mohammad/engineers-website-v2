@@ -9,7 +9,7 @@ export const companyInfo = {
   whatsapp: '+1235568824',
   businessHours: 'Mon-Sat 10:00-19:30',
   mapsUrl: 'https://www.google.com/maps',
-  logo: '/assets/img/logo.svg',
+  logo: '/assets/img/logo.avif',
   logoWhite: '/assets/img/logo-white.svg',
   favicon: '/assets/img/favicons/favicon.png',
   social: {
