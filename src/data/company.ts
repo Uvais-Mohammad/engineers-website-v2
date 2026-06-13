@@ -1,0 +1,38 @@
+export const companyInfo = {
+  name: 'Construz',
+  tagline: 'Modern construction, engineering, and property solutions.',
+  phone: '+123 556 8824',
+  secondaryPhone: '+121 551 579 266',
+  email: 'support@gmail.com',
+  address: '96 Jones Street, New York, USA',
+  website: 'https://example.com',
+  whatsapp: '+1235568824',
+  businessHours: 'Mon-Sat 10:00-19:30',
+  mapsUrl: 'https://www.google.com/maps',
+  logo: '/assets/img/logo.svg',
+  logoWhite: '/assets/img/logo-white.svg',
+  favicon: '/assets/img/favicons/favicon.png',
+  social: {
+    twitter: 'https://www.twitter.com/',
+    instagram: 'https://instagram.com/',
+    facebook: 'https://facebook.com/',
+    linkedin: 'https://linkedin.com/',
+  },
+};
+
+export const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: companyInfo.name,
+  url: companyInfo.website,
+  telephone: companyInfo.phone,
+  email: companyInfo.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: companyInfo.address,
+    addressLocality: 'New York',
+    addressCountry: 'US',
+  },
+  openingHours: ['Mo-Sa 10:00-19:30'],
+  hasMap: companyInfo.mapsUrl,
+};

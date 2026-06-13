@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BlogCard from '../../components/BlogCard.astro';
+import { companyInfo } from '../../data/company';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+);
+const tagSet = [...new Set(posts.flatMap((post) => post.data.tags))];
+---
+
+<BaseLayout
+  title={`${companyInfo.name} | Blog`}
+  description="Construction articles generated from Astro Content Collections."
+  canonical="/blog/"
+>
+  <div class="breadcumb-wrapper" data-bg-src="/assets/img/bg/breadcrumb-bg.png">
+    <div class="section-animation-shape1-1 shape-mockup animation-infinite" data-top="0" data-bg-src="/assets/img/shape/global-line-shape1.png"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Our Blogs</h1>
+            <ul class="breadcumb-menu">
+              <li><a href="/"><i class="ri-home-4-fill"></i> HOME</a></li>
+              <li class="active">OUR BLOG</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="blog-area space-top space-extra-bottom">
+    <div class="container">
+      <div class="row gy-40 justify-content-center">
+        {posts.map((post) => <BlogCard post={post} />)}
+      </div>
+      <div class="pagination justify-content-center">
+        <ul>
+          {tagSet.slice(0, 3).map((tag, index) => (
+            <li><a class={index === 0 ? 'active' : undefined} href={`/blog/tags/${tag.toLowerCase()}/`}>{String(index + 1).padStart(2, '0')}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

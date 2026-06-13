@@ -1,0 +1,10 @@
+---
+import PageHtml from '../components/PageHtml.astro';
+import { companyInfo } from '../data/company';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageHtml } from '../utils/theme';
+---
+
+<BaseLayout title={`${companyInfo.name} | Projects`} description="Project showcase page preserving the original portfolio layout and assets." canonical="/projects/">
+  <PageHtml html={getPageHtml('project.html')} />
+</BaseLayout>

@@ -1,0 +1,130 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import { companyInfo } from '../../data/company';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.data.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const relatedPosts = (await getCollection('blog')).filter((entry) => entry.id !== post.id).slice(0, 3);
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  image: new URL(post.data.cover.src, Astro.site).href,
+  datePublished: post.data.publishDate.toISOString(),
+  author: {
+    '@type': 'Person',
+    name: post.data.author,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: companyInfo.name,
+  },
+};
+---
+
+<BaseLayout
+  title={`${post.data.title} | ${companyInfo.name}`}
+  description={post.data.description}
+  canonical={`/blog/${post.data.slug}/`}
+  image={post.data.cover.src}
+  schema={schema}
+>
+  <div class="breadcumb-wrapper" data-bg-src="/assets/img/bg/breadcrumb-bg.png">
+    <div class="section-animation-shape1-1 shape-mockup animation-infinite" data-top="0" data-bg-src="/assets/img/shape/global-line-shape1.png"></div>
+    <div class="container">
+      <div class="breadcumb-content">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h1 class="breadcumb-title">{post.data.title}</h1>
+          </div>
+          <div class="col-12">
+            <ul class="breadcumb-menu">
+              <li><a href="/"><i class="ri-home-4-fill"></i> HOME</a></li>
+              <li><a href="/blog/">OUR BLOG</a></li>
+              <li class="active">{post.data.title}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="blog-area space-top space-extra-bottom">
+    <div class="container">
+      <div class="row gx-60">
+        <div class="col-xxl-8 col-lg-7">
+          <article class="blog-single">
+            <div class="blog-img">
+              <Image src={post.data.cover} alt={post.data.coverAlt} />
+              <div class="blog-date">
+                <a href="/blog/">
+                  <span>{post.data.publishDate.toLocaleDateString('en-US', { day: '2-digit' })}</span>
+                  {post.data.publishDate.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}
+                </a>
+                <div class="year">{post.data.publishDate.getFullYear()}</div>
+              </div>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <a href="/blog/">By {post.data.author}</a>
+                <a href="/blog/">Construction</a>
+                <a href={`/blog/tags/${post.data.tags[0].toLowerCase()}/`}>{post.data.tags[0]}</a>
+              </div>
+              <h2 class="blog-title">{post.data.title}</h2>
+              <Content />
+            </div>
+            <div class="share-links clearfix">
+              <div class="row justify-content-between">
+                <div class="col-md-auto">
+                  <div class="tagcloud">
+                    {post.data.tags.map((tag) => <a href={`/blog/tags/${tag.toLowerCase()}/`}>{tag}</a>)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-xxl-4 col-lg-5">
+          <aside class="sidebar-area">
+            <div class="widget widget_categories">
+              <h3 class="widget_title">Categories</h3>
+              <ul>
+                {Array.from(new Set(relatedPosts.flatMap((entry) => entry.data.tags))).map((tag) => (
+                  <li><a href={`/blog/tags/${tag.toLowerCase()}/`}>{tag}</a></li>
+                ))}
+              </ul>
+            </div>
+            <div class="widget">
+              <h3 class="widget_title">Recent Posts</h3>
+              <div class="recent-post-wrap">
+                {relatedPosts.map((entry) => (
+                  <div class="recent-post">
+                    <div class="media-body">
+                      <h4 class="post-title"><a class="text-inherit" href={`/blog/${entry.data.slug}/`}>{entry.data.title}</a></h4>
+                      <div class="recent-post-meta">
+                        <a href="/blog/">By {entry.data.author}</a>
+                        <a href={`/blog/${entry.data.slug}/`}>{entry.data.publishDate.toLocaleDateString('en-US')}</a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

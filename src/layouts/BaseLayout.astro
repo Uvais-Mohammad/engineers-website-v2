@@ -1,0 +1,99 @@
+---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import SiteChrome from '../components/SiteChrome.astro';
+import { companyInfo, localBusinessSchema } from '../data/company';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  noindex?: boolean;
+  schema?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.pathname,
+  image = '/assets/img/blog/blog_1_1.png',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonical, Astro.site);
+const imageUrl = new URL(image, Astro.site);
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: canonicalUrl.href,
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
+    <link rel="canonical" href={canonicalUrl.href} />
+    <link rel="icon" type="image/png" sizes="32x32" href={companyInfo.favicon} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={companyInfo.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:image" content={imageUrl.href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl.href} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/fonts/remixicon.css" />
+    <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" />
+    <link rel="stylesheet" href="/assets/css/slick.min.css" />
+    <link rel="stylesheet" href="/assets/css/nice-select.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  </head>
+  <body>
+    <SiteChrome />
+    <Header />
+    <slot />
+    <Footer />
+    <div class="scroll-top">
+      <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
+      </svg>
+    </div>
+    <script is:inline src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script is:inline src="/assets/js/slick.min.js"></script>
+    <script is:inline src="/assets/js/jquery-ui.min.js"></script>
+    <script is:inline src="/assets/js/bootstrap.min.js"></script>
+    <script is:inline src="/assets/js/jquery.magnific-popup.min.js"></script>
+    <script is:inline src="/assets/js/jquery.counterup.min.js"></script>
+    <script is:inline src="/assets/js/jquery.marquee.min.js"></script>
+    <script is:inline src="/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script is:inline src="/assets/js/isotope.pkgd.min.js"></script>
+    <script is:inline src="/assets/js/nice-select.min.js"></script>
+    <script is:inline src="/assets/js/wow.min.js"></script>
+    <script is:inline src="/assets/js/waypoints.min.js"></script>
+    <script is:inline src="/assets/js/main.js"></script>
+  </body>
+</html>

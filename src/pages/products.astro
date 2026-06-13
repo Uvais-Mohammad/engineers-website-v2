@@ -1,0 +1,10 @@
+---
+import PageHtml from '../components/PageHtml.astro';
+import { companyInfo } from '../data/company';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageHtml } from '../utils/theme';
+---
+
+<BaseLayout title={`${companyInfo.name} | Products`} description="Product and catalog page converted from the original static theme into Astro." canonical="/products/">
+  <PageHtml html={getPageHtml('shop.html')} />
+</BaseLayout>

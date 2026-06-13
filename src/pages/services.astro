@@ -1,0 +1,10 @@
+---
+import PageHtml from '../components/PageHtml.astro';
+import { companyInfo } from '../data/company';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageHtml } from '../utils/theme';
+---
+
+<BaseLayout title={`${companyInfo.name} | Services`} description="Service overview covering the company’s construction and project delivery capabilities." canonical="/services/">
+  <PageHtml html={getPageHtml('service.html')} />
+</BaseLayout>

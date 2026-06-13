@@ -1,0 +1,17 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import PageHtml from '../components/PageHtml.astro';
+import { companyInfo } from '../data/company';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getContactHtmlParts } from '../utils/theme';
+
+const { beforeForm, formSection } = getContactHtmlParts();
+const [formOpenPart, formClosePart] = formSection.split(/<form action="#"[\s\S]*?<\/form>/i);
+---
+
+<BaseLayout title={`${companyInfo.name} | Contact`} description="Contact page with office details and reusable lead form component." canonical="/contact/">
+  <PageHtml html={beforeForm} />
+  <Fragment set:html={formOpenPart ?? ''} />
+  <ContactForm />
+  <Fragment set:html={formClosePart ?? ''} />
+</BaseLayout>

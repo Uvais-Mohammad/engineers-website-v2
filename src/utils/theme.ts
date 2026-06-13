@@ -1,0 +1,98 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const demoRoot = path.resolve(process.cwd(), 'demo');
+const sharedSource = readSource('index.html');
+
+const routeMap: Record<string, string> = {
+  'index.html': '/',
+  'about.html': '/about/',
+  'service.html': '/services/',
+  'service-details.html': '/service-details/',
+  'project.html': '/projects/',
+  'project-details.html': '/project-details/',
+  'shop.html': '/products/',
+  'shop-details.html': '/product-details/',
+  'cart.html': '/cart/',
+  'checkout.html': '/checkout/',
+  'wishlist.html': '/wishlist/',
+  'team.html': '/team/',
+  'team-details.html': '/team-details/',
+  'contact.html': '/contact/',
+  'blog.html': '/blog/',
+  'blog-details.html': '/blog/construction-process-streamlines/',
+  'home-1-op.html': '/home-1-op/',
+  'home-2.html': '/home-2/',
+  'home-2-op.html': '/home-2-op/',
+  'home-3.html': '/home-3/',
+  'home-3-op.html': '/home-3-op/',
+  'home-4.html': '/home-4/',
+  'home-4-op.html': '/home-4-op/',
+  'home-5.html': '/home-5/',
+  'home-5-op.html': '/home-5-op/',
+};
+
+function readSource(fileName: string) {
+  return fs.readFileSync(path.join(demoRoot, fileName), 'utf8');
+}
+
+function sanitize(html: string) {
+  return html
+    .replace(/(?:\.\.\/)?assets\//g, '/assets/')
+    .replace(/href="([^"]+\.html)"/g, (_, file) => `href="${routeMap[file] ?? `/${file.replace(/\.html$/, '/')}`}"`)
+    .replace(/action="https:\/\/html\.favdevs\.com\/construz\/demo\/mail\.php"/g, 'action="#"')
+    .replace(/<img(?![^>]*\bdecoding=)([^>]*?)>/g, '<img decoding="async"$1>')
+    .replace(/<img(?![^>]*\bloading=)([^>]*?)>/g, '<img loading="lazy"$1>');
+}
+
+export function getSharedShell() {
+  const bodyStart = sharedSource.indexOf('<body>');
+  const headerStart = sharedSource.indexOf('<header class="nav-header');
+  const footerStart = sharedSource.indexOf('<footer class="footer-wrapper');
+  const footerEnd = sharedSource.indexOf('</footer>') + '</footer>'.length;
+
+  return {
+    top: sanitize(sharedSource.slice(bodyStart + '<body>'.length, headerStart)),
+    header: sanitize(sharedSource.slice(headerStart, sharedSource.indexOf('</header>') + '</header>'.length)),
+    footer: sanitize(sharedSource.slice(footerStart, footerEnd)),
+  };
+}
+
+export function getPageHtml(fileName: string) {
+  const source = readSource(fileName);
+  const match = source.match(/<\/header>([\s\S]*?)<footer class="footer-wrapper/i);
+  if (!match) {
+    throw new Error(`Unable to extract page content from ${fileName}`);
+  }
+  return sanitize(match[1].trim());
+}
+
+export function getPageTitle(fileName: string) {
+  const source = readSource(fileName);
+  const title = source.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1] ?? 'Construz';
+  return title.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+export function getIndexHeroHtml() {
+  const page = getPageHtml('index.html');
+  const marker = '<div class="about-area-1';
+  const splitIndex = page.indexOf(marker);
+  return splitIndex > -1 ? page.slice(0, splitIndex).trim() : page;
+}
+
+export function getIndexAfterHeroHtml() {
+  const page = getPageHtml('index.html');
+  const marker = '<div class="about-area-1';
+  const splitIndex = page.indexOf(marker);
+  return splitIndex > -1 ? page.slice(splitIndex).trim() : '';
+}
+
+export function getContactHtmlParts() {
+  const page = getPageHtml('contact.html');
+  const formStartMarker = '<section class="contact-area-2';
+  const start = page.indexOf(formStartMarker);
+  return {
+    beforeForm: start > -1 ? page.slice(0, start).trim() : page,
+    formSection: start > -1 ? page.slice(start).trim() : '',
+  };
+}

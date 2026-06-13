@@ -1,0 +1,24 @@
+---
+import { companyInfo } from '../data/company';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageHtml } from '../utils/theme';
+
+interface Props {
+  fileName: string;
+  title: string;
+  description: string;
+  canonical: string;
+  noindex?: boolean;
+}
+
+const { fileName, title, description, canonical, noindex = false } = Astro.props;
+---
+
+<BaseLayout
+  title={`${companyInfo.name} | ${title}`}
+  description={description}
+  canonical={canonical}
+  noindex={noindex}
+>
+  <Fragment set:html={getPageHtml(fileName)} />
+</BaseLayout>
