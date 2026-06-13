@@ -21,15 +21,7 @@ const routeMap: Record<string, string> = {
   'contact.html': '/contact/',
   'blog.html': '/blog/',
   'blog-details.html': '/blog/construction-process-streamlines/',
-  'home-1-op.html': '/home-1-op/',
-  'home-2.html': '/home-2/',
-  'home-2-op.html': '/home-2-op/',
-  'home-3.html': '/home-3/',
-  'home-3-op.html': '/home-3-op/',
   'home-4.html': '/home-4/',
-  'home-4-op.html': '/home-4-op/',
-  'home-5.html': '/home-5/',
-  'home-5-op.html': '/home-5-op/',
 };
 
 function readSource(fileName: string) {
