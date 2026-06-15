@@ -13487,6 +13487,9 @@ li.trackback {
   font-weight: 600;
   /* Extra small devices */
 }
+.service-card.style5 .service-card_title--compact {
+  font-size: 31px;
+}
 @media (max-width: 575px) {
   .service-card.style5 .service-card_title {
     font-size: 24px;
