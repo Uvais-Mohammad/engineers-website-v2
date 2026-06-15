@@ -8935,6 +8935,22 @@ li.trackback {
 .hero-award-wrap .hero-award-logo {
   margin-bottom: 30px;
 }
+.hero-award-wrap .hero-award-brand {
+  display: inline-block;
+  margin-bottom: 22px;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white-color);
+  font-family: var(--title-font);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
 .hero-award-wrap .hero-award-title {
   margin-bottom: 0;
   font-size: 32px;
@@ -8943,6 +8959,10 @@ li.trackback {
   /* Large devices */
 }
 @media (max-width: 1199px) {
+  .hero-award-wrap .hero-award-brand {
+    font-size: 24px;
+    letter-spacing: 0.14em;
+  }
   .hero-award-wrap .hero-award-title {
     font-size: 24px;
   }
