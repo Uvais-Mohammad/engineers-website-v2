@@ -1,8 +1,11 @@
 ---
 import AboutSection from '../components/home/AboutSection.astro';
+import ClientSection from '../components/home/ClientSection.astro';
+import CtaBlogSection from '../components/home/CtaBlogSection.astro';
 import FeatureHighlights from '../components/home/FeatureHighlights.astro';
 import HeroSection from '../components/home/HeroSection.astro';
 import ProductsSection from '../components/home/ProductsSection.astro';
+import RecentProjectSection from '../components/home/RecentProjectSection.astro';
 import TestimonialsSection from '../components/home/TestimonialsSection.astro';
 import WhyChooseSection from '../components/home/WhyChooseSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -19,5 +22,8 @@ import { companyInfo } from '../data/company';
   <AboutSection />
   <ProductsSection />
   <WhyChooseSection />
+  <RecentProjectSection />
   <TestimonialsSection />
+  <CtaBlogSection />
+  <ClientSection />
 </BaseLayout>
