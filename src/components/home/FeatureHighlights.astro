@@ -1,0 +1,28 @@
+---
+import { serviceHighlights } from '../../data/home';
+---
+
+<div class="service-area-5 space-top overflow-hidden">
+  <div class="container">
+    <div class="service-card-wrap5">
+      <div class="row gy-50 justify-content-xl-between justify-content-center">
+        {serviceHighlights.map((item) => (
+          <div class="col-xxl-auto col-xl-4 col-md-6">
+            <div class="service-card style5">
+              <div class="service-card-number">{item.number}</div>
+              <div class="service-card_content">
+                <div class="service-card_icon">
+                  <img src={item.icon} alt="" />
+                </div>
+                <h4 class:list={['service-card_title', { 'service-card_title--compact': item.title.length > 18 }]}>
+                  <a href="/services/">{item.title}</a>
+                </h4>
+                <p class="service-card_text">{item.text}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

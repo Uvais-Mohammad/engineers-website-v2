@@ -1,0 +1,91 @@
+---
+import { companyInfo } from '../../data/company';
+import { heroSlides } from '../../data/home';
+---
+
+<div class="hero-wrapper hero-4" id="hero">
+  <div class="hero-slider4 global-carousel" data-slide-show="1" data-fade="true">
+    {heroSlides.map((slide) => (
+      <div class="hero-slide" data-bg-src={slide.background} data-overlay="title" data-opacity="4">
+        <div class="container">
+          <div class="hero-style4">
+            <div class="hero-shadow-text">{slide.shadowText}</div>
+            <div class="jump-reverse hero-shadow-text-wrap">
+              <div class="hero-shadow-text2">
+                Contact Info <img src="/assets/img/icon/long-arrow-right2.svg" alt="arrow" /> Scroll Down
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-xxl-7 col-xl-8">
+                <div class="hero-subtitle" data-ani="slider-custom-anim-left" data-ani-delay="0.1s">
+                  {slide.subtitle} <img src="/assets/img/icon/long-arrow-right2.svg" alt="arrow" />
+                </div>
+                {slide.titleLines.map((line, index) => (
+                  <h1 class="hero-title" data-ani="slider-custom-anim-left" data-ani-delay={`${0.1 + index * 0.1}s`}>
+                    {line}
+                  </h1>
+                ))}
+                <p class="hero-text" data-ani="slider-custom-anim-left" data-ani-delay="0.2s">{slide.text}</p>
+              </div>
+              <div class="col-xxl-5 col-xl-4 text-xl-center">
+                <div class="hero-tag" data-ani="slideinup" data-ani-delay="0.4s">
+                  <div class="about-experience-tag style2">
+                    <span class="hero-title-anime">Explore More - Explore More -</span>
+                  </div>
+                  <a href="/contact/" class="hero-tag_icon" aria-label={`Contact ${companyInfo.name}`}>
+                    <i class="ri-arrow-right-up-line"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="container">
+    <div class="hero-4-number-tab" data-asnavfor=".hero-slider4">
+      {heroSlides.map((slide, index) => (
+        <button class:list={['tab-btn', { active: index === 0 }]} type="button">{slide.id}</button>
+      ))}
+    </div>
+  </div>
+</div>
+
+<div class="hero-contact-area position-relative z-index-common">
+  <div class="hero-contact-bg-img bg-title">
+    <img src="/assets/img/hero/hero_4_contact_bg.png" alt="" />
+  </div>
+  <div class="container">
+    <div class="hero-contact-wrap">
+      <div class="hero-award-wrap" data-bg-src="/assets/img/hero/hero_4_award_bg.png">
+        <div class="hero-award-icon">
+          <img src="/assets/img/hero/hero_4_award_icon.svg" alt="" />
+        </div>
+        <div class="hero-award-brand">ENGINEERS</div>
+        <h4 class="hero-award-title">Trusted manufacturing partner in Kerala</h4>
+      </div>
+      <div class="hero-contact-info-wrap">
+        <div class="hero-contact-icon">
+          <img src="/assets/img/hero/hero4-contact-info-icon1.svg" alt="" />
+        </div>
+        <h4 class="hero-contact-info-title">Working Hours</h4>
+        <p class="hero-contact-info-text">{companyInfo.businessHours}</p>
+      </div>
+      <div class="hero-contact-info-wrap">
+        <div class="hero-contact-icon">
+          <img src="/assets/img/hero/hero4-contact-info-icon2.svg" alt="" />
+        </div>
+        <h4 class="hero-contact-info-title">Call Any Time</h4>
+        <p class="hero-contact-info-text">{companyInfo.phone}</p>
+      </div>
+      <div class="hero-contact-info-wrap">
+        <div class="hero-contact-icon">
+          <img src="/assets/img/hero/hero4-contact-info-icon3.svg" alt="" />
+        </div>
+        <h4 class="hero-contact-info-title">Say Something</h4>
+        <p class="hero-contact-info-text">{companyInfo.email}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,23 @@
 ---
-import ThemePage from '../components/ThemePage.astro';
+import AboutSection from '../components/home/AboutSection.astro';
+import FeatureHighlights from '../components/home/FeatureHighlights.astro';
+import HeroSection from '../components/home/HeroSection.astro';
+import ProductsSection from '../components/home/ProductsSection.astro';
+import TestimonialsSection from '../components/home/TestimonialsSection.astro';
+import WhyChooseSection from '../components/home/WhyChooseSection.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { companyInfo } from '../data/company';
 ---
 
-<ThemePage
-  fileName="index.html"
-  title="Home"
-  description="Source homepage retained from the original theme."
+<BaseLayout
+  title={`${companyInfo.name} | Home`}
+  description="Discover high-quality interlocks, designer tiles, and hollow bricks from Kerala, crafted with excellence and innovation to meet all your construction needs."
   canonical="/"
-/>
+>
+  <HeroSection />
+  <FeatureHighlights />
+  <AboutSection />
+  <ProductsSection />
+  <WhyChooseSection />
+  <TestimonialsSection />
+</BaseLayout>

@@ -876,13 +876,33 @@
     });
 
     /*----------- Set Background Image ----------*/
-    if ($("[data-bg-src]").length > 0) {
-        $("[data-bg-src]").each(function () {
+    function applyBackgroundImages($scope) {
+        var $targets = $scope ? $scope.find("[data-bg-src]") : $("[data-bg-src]");
+        $targets.each(function () {
             var src = $(this).attr("data-bg-src");
-            $(this).css("background-image", "url(" + src + ")");
-            $(this).removeAttr("data-bg-src").addClass("background-image");
+            if (!src) return;
+            // Slick rewrites slide style attributes during layout and resize,
+            // so backgrounds sourced from data attributes must be reapplied.
+            this.style.backgroundImage = 'url("' + src + '")';
+            $(this).addClass("background-image");
         });
     }
+
+    applyBackgroundImages();
+
+    if ($(".global-carousel").length) {
+        $(".global-carousel").on("init reInit setPosition afterChange", function (event, slick) {
+            applyBackgroundImages($(slick.$slider));
+        });
+    }
+
+    var bgResizeTimer;
+    $(window).on("resize orientationchange", function () {
+        clearTimeout(bgResizeTimer);
+        bgResizeTimer = setTimeout(function () {
+            applyBackgroundImages();
+        }, 80);
+    });
     if ($('[data-mask-src]').length > 0) {
         $('[data-mask-src]').each(function () {
           var mask = $(this).attr('data-mask-src');

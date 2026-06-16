@@ -1,7 +1,70 @@
 ---
-import { getSharedShell } from '../utils/theme';
-
-const { top } = getSharedShell();
+import { companyInfo } from '../data/company';
+import { mainNavigation } from '../data/navigation';
 ---
 
-<Fragment set:html={top} />
+<div class="preloader">
+  <div class="preloader-inner">
+    <span class="loader"></span>
+  </div>
+</div>
+
+<div class="popup-search-box">
+  <button class="searchClose" type="button"><i class="ri-close-line"></i></button>
+  <form action="#">
+    <input type="text" placeholder="Search Here.." />
+    <button type="submit"><i class="ri-search-line"></i></button>
+  </form>
+</div>
+
+<div class="sidemenu-wrapper">
+  <div class="sidemenu-content">
+    <button class="closeButton sideMenuCls" type="button"><i class="ri-close-line"></i></button>
+    <div class="widget widget-about footer-widget">
+      <div class="footer-logo">
+        <a href="/"><img src={companyInfo.logo} alt={companyInfo.name} /></a>
+      </div>
+      <p class="about-text mb-4">{companyInfo.tagline}</p>
+
+      <p class="footer-text">
+        <a href={`tel:${companyInfo.phone.replace(/\s+/g, '')}`}>
+          <i class="ri-phone-line me-2"></i>{companyInfo.phone}
+        </a>
+      </p>
+      <p class="contact-text"><i class="ri-map-pin-line me-2"></i> {companyInfo.address}</p>
+      <p class="footer-text">
+        <a href={`mailto:${companyInfo.email}`}>
+          <i class="ri-mail-line me-2"></i>{companyInfo.email}
+        </a>
+      </p>
+      <div class="social-btn style3 mt-30">
+        {companyInfo.social.instagram && (
+          <a href={companyInfo.social.instagram} target="_blank" rel="noreferrer">
+            <i class="ri-instagram-line"></i>
+          </a>
+        )}
+        {companyInfo.social.facebook && (
+          <a href={companyInfo.social.facebook} target="_blank" rel="noreferrer">
+            <i class="ri-facebook-fill"></i>
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-menu-wrapper">
+  <div class="mobile-menu-area">
+    <div class="mobile-logo">
+      <a href="/"><img src={companyInfo.logo} alt={companyInfo.name} /></a>
+      <button class="menu-toggle" type="button"><i class="ri-close-line"></i></button>
+    </div>
+    <div class="mobile-menu">
+      <ul>
+        {mainNavigation.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>

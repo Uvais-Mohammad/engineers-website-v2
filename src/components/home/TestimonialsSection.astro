@@ -1,0 +1,46 @@
+---
+import { testimonials } from '../../data/home';
+---
+
+<div class="testimonial-area-4 overflow-hidden space bg-smoke" data-bg-src="/assets/img/bg/testimonial-bg4-1.png">
+  <div class="testimonial_shape_1-1 shape-mockup jump d-xxl-block d-none" data-top="0" data-right="4%">
+    <img src="/assets/img/shape/sec-bg-shape2.png" alt="" />
+  </div>
+  <div class="container">
+    <div class="row gx-100 gy-60 flex-row-reverse">
+      <div class="col-xl-6">
+        <div class="title-area">
+          <span class="sub-title text-theme">Testimonials <i class="ri-arrow-right-down-line"></i></span>
+          <h2 class="sec-title">Our happy customers</h2>
+        </div>
+        <div class="row gy-30">
+          {testimonials.map((item) => (
+            <div class="col-12">
+              <div class="testi-card">
+                <div class="quote-icon">
+                  <img src="/assets/img/icon/quote.svg" alt="" />
+                </div>
+                <div class="testi-card-thumb">
+                  <img src={item.image} alt={item.name} />
+                </div>
+                <div class="testi-card_content">
+                  <h4 class="testi-card_title">{item.title}</h4>
+                  <p class="testi-card_text">{item.text}</p>
+                  <div class="testi-card-profile">
+                    <div class="testi-card-profile-details">
+                      <h5 class="testi-profile-title">{item.name}</h5>
+                      <span class="testi-profile-desig">{item.role}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <div class="video_thumb2-1" data-bg-src="/assets/img/normal/testimonial_2-1.png"></div>
+      </div>
+    </div>
+  </div>
+</div>

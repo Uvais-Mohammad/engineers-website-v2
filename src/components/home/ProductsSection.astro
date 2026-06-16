@@ -1,0 +1,54 @@
+---
+import { productServices } from '../../data/home';
+---
+
+<div class="space-hd-bottom">
+  <div class="service-area-6 space overflow-hidden position-relative" data-bg-src="/assets/img/bg/service-bg6-1.png">
+    <div
+      class="section-animation-shape1-1 shape-mockup animation-infinite"
+      data-top="0"
+      data-bg-src="/assets/img/shape/global-line-shape1.png"></div>
+    <div class="container">
+      <div class="service-card-wrap6">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="title-area text-center mb-50">
+              <span class="sub-title text-theme">WHAT WE DO <i class="ri-arrow-right-down-line"></i></span>
+              <h2 class="sec-title">We provide our services all over the Kerala</h2>
+            </div>
+          </div>
+        </div>
+        <div
+          class="row global-carousel service-slider6"
+          data-slide-show="3"
+          data-md-slide-show="2"
+          data-dots="true"
+          data-xl-dots="true"
+          data-ml-dots="true"
+          data-lg-dots="true"
+          data-md-dots="true">
+          {productServices.map((item) => (
+            <div class="col-xxl-auto col-xl-4 col-md-6">
+              <div class="service-card style6" data-bg-src="/assets/img/bg/service-card-bg6-1.png">
+                <div class="service-card-number">{item.number}</div>
+                <div class="service-card-thumb" data-mask-src="/assets/img/service/service_thumb6_mask.png">
+                  <img src={item.image} alt={item.title} />
+                </div>
+                <div class="service-card_content">
+                  <div class="service-card_icon">
+                    <img src={item.icon} alt="" />
+                  </div>
+                  <h4 class="service-card_title"><a href="/services/">{item.title}</a></h4>
+                  <p class="service-card_text">{item.text}</p>
+                  <div class="btn-group">
+                    <a href="/products/" class="btn">VIEW PRODUCTS <i class="ri-arrow-right-up-line"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
