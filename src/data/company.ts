@@ -5,7 +5,7 @@ export const companyInfo = {
   secondaryPhone: '+91 9847 207 063',
   email: 'engineerspaver@gmail.com',
   address: 'Mundakkulam, Malappuram, Kerala, 673638',
-  website: 'https://www.engineersinterlock.com',
+  website: 'https://engineers-website-v2.engineerspaver-ea1.workers.dev',
   whatsapp: '+919061686999',
   businessHours: 'Mon-Sat 10:00-19:30',
   mapsUrl: 'https://maps.google.com/?q=Mundakkulam,+Malappuram,+Kerala,+673638',
