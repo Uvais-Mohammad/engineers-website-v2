@@ -12,6 +12,8 @@ export const companyInfo = {
   logo: '/assets/img/logo.avif',
   logoWhite: '/assets/img/logo-white.svg',
   favicon: '/assets/img/favicons/favicon.png',
+  socialImage: '/assets/img/hero/hero_bg_4_1.png',
+  socialImageAlt: 'Engineers Interlocks premium interlocks and designer tiles in Kerala',
   social: {
     instagram: 'https://www.instagram.com/engineers_interlocks',
     facebook: 'https://www.facebook.com/engineersatmundakkulam',

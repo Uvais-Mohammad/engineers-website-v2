@@ -17,7 +17,7 @@ const {
   title,
   description,
   canonical = Astro.url.pathname,
-  image = '/assets/img/blog/blog_1_1.png',
+  image = companyInfo.socialImage,
   noindex = false,
   schema,
 } = Astro.props;
@@ -51,10 +51,12 @@ const pageSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl.href} />
     <meta property="og:image" content={imageUrl.href} />
+    <meta property="og:image:alt" content={companyInfo.socialImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl.href} />
+    <meta name="twitter:image:alt" content={companyInfo.socialImageAlt} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
