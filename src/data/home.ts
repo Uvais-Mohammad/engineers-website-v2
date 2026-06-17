@@ -60,7 +60,7 @@ export const aboutSection = {
     {
       id: 'about',
       label: 'About Us',
-      text: 'From elegant paving solutions to durable outdoor surfaces, Engineers Interlocks focuses on products that blend visual appeal with long-lasting performance for residential and commercial projects.',
+      text: 'From elegant paving solutions to durable outdoor surfaces, Engineers Interlocks focuses on products that blend visual appeal with long-lasting performance.',
     },
     {
       id: 'products',

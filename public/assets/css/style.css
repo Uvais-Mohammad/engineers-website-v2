@@ -10181,11 +10181,6 @@ li.trackback {
   border-top: 6px solid var(--white-color);
   border-left: 6px solid var(--white-color);
 }
-.about-thumb4 .client-group-4-1 {
-  position: absolute;
-  bottom: 0;
-  left: 55px;
-}
 .about-thumb4 .about-counter-wrap {
   background: transparent;
   border: 0;
@@ -10215,9 +10210,6 @@ li.trackback {
 @media (max-width: 1399px) {
   .about-thumb4 {
     padding: 0 327px 312px 0;
-  }
-  .about-thumb4 .client-group-4-1 {
-    left: 0;
   }
 }
 @media (max-width: 1299px) {
@@ -10262,11 +10254,6 @@ li.trackback {
   }
   .about-thumb4 .about-counter-wrap .about-counter-number {
     font-size: 40px;
-  }
-  .about-thumb4 .client-group-4-1 {
-    right: 0;
-    left: auto;
-    bottom: 100px;
   }
 }
 
