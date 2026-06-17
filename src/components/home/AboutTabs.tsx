@@ -28,7 +28,7 @@ export default function AboutTabs({ items }: Props) {
           </button>
         ))}
       </div>
-      <div className="filter-active-cat1">
+      <div>
         <div className="filter-item">
           <p className="about-tab-text">{activeItem.text}</p>
         </div>
