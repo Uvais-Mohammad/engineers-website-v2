@@ -4,7 +4,6 @@ export const mainNavigation = [
   { label: 'Services', href: '/services/' },
   { label: 'Projects', href: '/projects/' },
   { label: 'Products', href: '/products/' },
-  { label: 'Blog', href: '/blog/' },
   { label: 'Contact', href: '/contact/' },
 ];
 
@@ -16,7 +15,6 @@ export const footerLinks = {
     { label: 'Projects', href: '/projects/' },
   ],
   support: [
-    { label: 'Blog', href: '/blog/' },
     { label: 'Contact', href: '/contact/' },
     { label: 'Privacy Policy', href: '/contact/' },
     { label: 'Terms & Conditions', href: '/contact/' },
