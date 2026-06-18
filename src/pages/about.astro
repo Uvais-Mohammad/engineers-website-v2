@@ -8,3 +8,11 @@ import { getPageHtml } from '../utils/theme';
 <BaseLayout title={`${companyInfo.name} | About`} description="About the company, expertise, and team credibility." canonical="/about/">
   <PageHtml html={getPageHtml('about.html')} />
 </BaseLayout>
+
+<style is:global>
+  @media (max-width: 991.98px) {
+    .about-area-2 .row.flex-row-reverse {
+      flex-direction: column-reverse !important;
+    }
+  }
+</style>
