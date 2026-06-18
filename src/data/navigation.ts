@@ -13,10 +13,8 @@ export const footerLinks = {
     { label: 'What We Do', href: '/services/' },
     { label: 'Our Products', href: '/products/' },
     { label: 'Projects', href: '/projects/' },
+    
   ],
   support: [
-    { label: 'Contact', href: '/contact/' },
-    { label: 'Privacy Policy', href: '/contact/' },
-    { label: 'Terms & Conditions', href: '/contact/' },
   ],
 };
