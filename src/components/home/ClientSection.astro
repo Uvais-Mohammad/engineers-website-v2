@@ -1,61 +1,52 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+const clientDir = path.join(process.cwd(), 'public/assets/img/client');
+const imageExtensions = new Set(['.png', '.jpg', '.jpeg', '.webp', '.avif', '.svg']);
+
+const toLabel = (value) =>
+  value
+    .replace(/[-_]+/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
+const clientLogos = fs
+  .readdirSync(clientDir)
+  .filter((file) => imageExtensions.has(path.extname(file).toLowerCase()))
+  .filter((file) => !/^client-\d-/i.test(path.parse(file).name))
+  .sort((a, b) => a.localeCompare(b))
+  .map((file) => ({
+    src: `/assets/img/client/${file}`,
+    alt: toLabel(path.parse(file).name),
+  }));
+
+const sliderLogos = [...clientLogos, ...clientLogos];
+---
+
 <div class="client-area-4 bg-smoke" data-bg-src="/assets/img/bg/client-bg4-1.png">
   <div class="container">
+    <div class="title-area text-center">
+      <span class="sub-title text-theme">Our Clients <i class="ri-arrow-right-down-line"></i></span>
+      <h2 class="sec-title">Organizations that trust our products</h2>
+    </div>
     <div
       class="row global-carousel client-slider2 space text-center"
       data-slide-show="5"
       data-lg-slide-show="4"
       data-md-slide-show="3"
       data-sm-slide-show="2">
-      <div class="col-lg-auto">
-        <div class="client-logo">
-          <a href="/"><img src="/assets/img/client/client-2-1.svg" alt="img" /></a>
-        </div>
-      </div>
-      <div class="col-lg-auto">
-        <div class="client-logo">
-          <a href="/"><img src="/assets/img/client/client-2-2.svg" alt="img" /></a>
-        </div>
-      </div>
-      <div class="col-lg-auto">
-        <div class="client-logo">
-          <a href="/"><img src="/assets/img/client/client-2-3.svg" alt="img" /></a>
-        </div>
-      </div>
-      <div class="col-lg-auto">
-        <div class="client-logo">
-          <a href="/"><img src="/assets/img/client/client-2-4.svg" alt="img" /></a>
-        </div>
-      </div>
-      <div class="col-lg-auto">
-        <div class="client-logo">
-          <a href="/"><img src="/assets/img/client/client-2-5.svg" alt="img" /></a>
-        </div>
-      </div>
-      <div class="col-lg-auto">
-        <div class="client-logo">
-          <a href="/"><img src="/assets/img/client/client-2-1.svg" alt="img" /></a>
-        </div>
-      </div>
-      <div class="col-lg-auto">
-        <div class="client-logo">
-          <a href="/"><img src="/assets/img/client/client-2-2.svg" alt="img" /></a>
-        </div>
-      </div>
-      <div class="col-lg-auto">
-        <div class="client-logo">
-          <a href="/"><img src="/assets/img/client/client-2-3.svg" alt="img" /></a>
-        </div>
-      </div>
-      <div class="col-lg-auto">
-        <div class="client-logo">
-          <a href="/"><img src="/assets/img/client/client-2-4.svg" alt="img" /></a>
-        </div>
-      </div>
-      <div class="col-lg-auto">
-        <div class="client-logo">
-          <a href="/"><img src="/assets/img/client/client-2-5.svg" alt="img" /></a>
-        </div>
-      </div>
+      {
+        sliderLogos.map((logo) => (
+          <div class="col-lg-auto">
+            <div class="client-logo">
+              <a href="/"><img src={logo.src} alt={logo.alt} /></a>
+            </div>
+          </div>
+        ))
+      }
     </div>
 
     <!-- <div class="subscribe-area-4" data-bg-src="/assets/img/bg/subscribe-bg4-1.png">
@@ -72,3 +63,33 @@
     </div> -->
   </div>
 </div>
+
+<style>
+  .client-area-4 .title-area {
+    padding-top: 40px;
+  }
+
+  .client-area-4 .client-logo {
+    opacity: 1;
+    transition: none;
+  }
+
+  .client-area-4 .client-logo:hover {
+    opacity: 1;
+  }
+
+  .client-logo img {
+    max-height: 120px;
+    width: auto;
+    max-width: 150px;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 767px) {
+    .client-logo img {
+      max-height: 44px;
+      max-width: 120px;
+    }
+  }
+</style>
