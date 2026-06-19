@@ -37,12 +37,13 @@ const sliderLogos = [...clientLogos, ...clientLogos];
       data-slide-show="5"
       data-lg-slide-show="4"
       data-md-slide-show="3"
-      data-sm-slide-show="2">
+      data-sm-slide-show="3"
+      data-xs-slide-show="3">
       {
         sliderLogos.map((logo) => (
           <div class="col-lg-auto">
             <div class="client-logo">
-              <a href="/"><img src={logo.src} alt={logo.alt} /></a>
+              <img src={logo.src} alt={logo.alt} />
             </div>
           </div>
         ))
@@ -75,6 +76,10 @@ const sliderLogos = [...clientLogos, ...clientLogos];
     transition: none;
   }
 
+  .client-area-4 .client-slider2 .slick-slide {
+    padding-inline: 10px;
+  }
+
   .client-area-4 .client-logo:hover {
     opacity: 1;
   }
@@ -88,9 +93,20 @@ const sliderLogos = [...clientLogos, ...clientLogos];
   }
 
   @media (max-width: 767px) {
+    .client-area-4 .client-slider2 .slick-slide {
+      padding-inline: 6px;
+    }
+
     .client-logo img {
-      max-height: 44px;
-      max-width: 120px;
+      max-height: 76px;
+      max-width: 175px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .client-logo img {
+      max-height: 68px;
+      max-width: 158px;
     }
   }
 </style>
