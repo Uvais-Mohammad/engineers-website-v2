@@ -117,6 +117,24 @@ import { heroSlides } from '../../data/home';
     font-size: 16px;
   }
 
+  .hero-award-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-award-icon img.hero-iso-logo {
+    width:150px;
+    height:150px;
+    object-fit: contain;
+  }
+
+  .hero-award-icon img.hero-matterlab-logo {
+    width:150px;
+    height:150px;
+    object-fit: contain;
+  }
+
   @media (max-width: 575px) {
     .hero-google-review {
       gap: 14px;
@@ -143,9 +161,10 @@ import { heroSlides } from '../../data/home';
     <div class="hero-contact-wrap">
       <div class="hero-award-wrap" data-bg-src="/assets/img/hero/hero_4_award_bg.png">
         <div class="hero-award-icon">
-          <img src="/assets/img/hero/hero_4_award_icon.svg" alt="" />
+          <img class="hero-iso-logo" src="/assets/img/icon/iso-certified-company.png" alt="ISO Certified Company 9001:2015" />
+          <img class="hero-matterlab-logo" src="/assets/img/icon/matterlab-logo.png" alt="Matterlab" />
         </div>
-        <div class="hero-award-brand">ENGINEERS</div>
+        
         <h4 class="hero-award-title">Trusted manufacturing partner in Kerala</h4>
       </div>
       <div class="hero-contact-info-wrap">
