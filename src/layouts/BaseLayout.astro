@@ -24,6 +24,9 @@ const {
 
 const canonicalUrl = new URL(canonical, Astro.site);
 const imageUrl = new URL(image, Astro.site);
+const whatsappNumber = companyInfo.whatsapp.replace(/\D/g, '');
+const whatsappMessage = encodeURIComponent(`Hello ${companyInfo.name}, I would like to know more about your products.`);
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 const pageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
@@ -79,6 +82,17 @@ const pageSchema = {
     <Header />
     <slot />
     <Footer />
+    <a
+      class="whatsapp-float"
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Chat with ${companyInfo.name} on WhatsApp`}
+    >
+      <span class="whatsapp-float__pulse" aria-hidden="true"></span>
+      <i class="ri-whatsapp-line" aria-hidden="true"></i>
+      <span class="whatsapp-float__label">Chat with us</span>
+    </a>
     <div class="scroll-top">
       <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
         <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
@@ -99,3 +113,81 @@ const pageSchema = {
     <script is:inline src="/assets/js/main.js"></script>
   </body>
 </html>
+
+<style is:global>
+  .whatsapp-float {
+    position: fixed;
+    right: 28px;
+    bottom: 100px;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 58px;
+    padding: 0 18px;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #25d366, #128c4a);
+    box-shadow: 0 10px 28px rgba(18, 140, 74, 0.35);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    isolation: isolate;
+  }
+
+  .whatsapp-float:hover {
+    color: #fff;
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 16px 36px rgba(18, 140, 74, 0.45);
+  }
+
+  .whatsapp-float i {
+    font-size: 29px;
+  }
+
+  .whatsapp-float__pulse {
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    border-radius: inherit;
+    background: rgba(37, 211, 102, 0.45);
+    animation: whatsapp-pulse 2.2s ease-out infinite;
+  }
+
+  @keyframes whatsapp-pulse {
+    0% {
+      opacity: 0.75;
+      transform: scale(1);
+    }
+    75%,
+    100% {
+      opacity: 0;
+      transform: scale(1.28);
+    }
+  }
+
+  @media (max-width: 575px) {
+    .whatsapp-float {
+      right: 18px;
+      bottom: 82px;
+      width: 56px;
+      min-height: 56px;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .whatsapp-float__label {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .whatsapp-float,
+    .whatsapp-float__pulse {
+      animation: none;
+      transition: none;
+    }
+  }
+</style>
