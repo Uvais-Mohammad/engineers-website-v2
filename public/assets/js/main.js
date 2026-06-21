@@ -614,30 +614,6 @@
         "show"
     );
 
-    /*---------- Popup Sidemenu ----------*/
-    function popupSideMenu($sideMenu, $sideMunuOpen, $sideMenuCls, $toggleCls) {
-        // Sidebar Popup
-        $($sideMunuOpen).on('click', function (e) {
-        e.preventDefault();
-        $($sideMenu).addClass($toggleCls);
-        });
-        $($sideMenu).on('click', function (e) {
-        e.stopPropagation();
-        $($sideMenu).removeClass($toggleCls)
-        });
-        var sideMenuChild = $sideMenu + ' > div';
-        $(sideMenuChild).on('click', function (e) {
-        e.stopPropagation();
-        $($sideMenu).addClass($toggleCls)
-        });
-        $($sideMenuCls).on('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        $($sideMenu).removeClass($toggleCls);
-        });
-    };
-    popupSideMenu('.sidemenu-wrapper', '.sideMenuToggler', '.sideMenuCls', 'show');
-
     /*----------- Magnific Popup ----------*/
     /* magnificPopup img view */
     $(".popup-image").magnificPopup({
