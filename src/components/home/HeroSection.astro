@@ -127,20 +127,40 @@ import { heroSlides } from '../../data/home';
   }
 
   .hero-award-icon {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .hero-award-wrap {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 320px;
+    max-width: 100%;
+    margin-top: 0;
+    padding: 16px;
+  }
+
+  .hero-award-wrap .hero-award-title {
+    margin: 0;
+    font-size: 23px;
+    line-height: 1.25;
   }
 
   .hero-award-icon img.hero-iso-logo {
-    width:150px;
-    height:150px;
+    width: 130px;
+    height: 130px;
     object-fit: contain;
   }
 
   .hero-award-icon img.hero-matterlab-logo {
-    width:150px;
-    height:150px;
+    width: 130px;
+    height: 130px;
     object-fit: contain;
   }
 
@@ -171,6 +191,21 @@ import { heroSlides } from '../../data/home';
     .hero-google-review__score {
       font-size: 22px;
     }
+
+    .hero-award-wrap {
+      width: 280px;
+      padding: 14px;
+    }
+
+    .hero-award-wrap .hero-award-title {
+      font-size: 20px;
+    }
+
+    .hero-award-icon img.hero-iso-logo,
+    .hero-award-icon img.hero-matterlab-logo {
+      width: 82px;
+      height: 82px;
+    }
   }
 </style>
 
@@ -186,7 +221,7 @@ import { heroSlides } from '../../data/home';
           <img class="hero-matterlab-logo" src="/assets/img/icon/matterlab-logo.png" alt="Matterlab" />
         </div>
         
-        <h4 class="hero-award-title">Trusted manufacturing partner in Kerala</h4>
+        <h4 class="hero-award-title">Kerala’s Trusted Partner for Quality Manufacturing</h4>
       </div>
       <div class="hero-contact-info-wrap">
         <div class="hero-contact-icon">
