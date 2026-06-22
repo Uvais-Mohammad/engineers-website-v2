@@ -29,20 +29,20 @@ export const serviceHighlights = [
   {
     number: '1',
     icon: '/assets/img/icon/service-icon4-1.svg',
-    title: 'Own Manufacturing',
-    text: 'High-quality interlocks, designer tiles, and hollow bricks produced with consistent workmanship and dependable material standards.',
+    title: 'Design and Site Planning',
+    text: 'Experienced engineers assess the site and plan the layout, interlock pattern, colors, levels, and drainage requirements so the paving work suits the space and performs properly.',
   },
   {
     number: '2',
     icon: '/assets/img/icon/service-icon4-2.svg',
-    title: 'Custom Manufacturing',
-    text: 'Product sizes, patterns, and production runs tailored to project requirements for residential and commercial applications.',
+    title: 'Base and Interlock Laying',
+    text: 'Skilled installation professionals excavate and level the area, prepare the compacted base and bedding sand, and lay the interlock blocks in the selected pattern with proper alignment.',
   },
   {
     number: '3',
     icon: '/assets/img/icon/service-icon4-3.svg',
-    title: 'Paving Installation',
-    text: 'Expert support for finished outdoor surfaces, helping clients achieve durable and visually refined paving results.',
+    title: 'Joint Filling and Finishing',
+    text: 'The final compaction, joint filling, and finishing checks are completed under expert supervision to lock the pavers in place and deliver a clean result.',
   },
 ];
 
