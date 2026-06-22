@@ -1,4 +1,5 @@
 ---
+import SiteImage from "./SiteImage.astro";
 import { companyInfo } from "../data/company";
 import { footerLinks } from "../data/navigation";
 
@@ -14,7 +15,7 @@ const year = new Date().getFullYear();
       <div class="row justify-content-between">
         <div class="col-md-6 col-xl-3">
           <div class="widget widget-about footer-widget">
-            <img src="/assets/img/logo-dark.png" alt={companyInfo.name} />
+            <SiteImage src="/assets/img/logo-dark.png" alt={companyInfo.name} />
             <p class="about-text">{companyInfo.tagline}</p>
             <h4 class="about-year">Since 2000</h4>
             <h5 class="about-subtitle">WE ARE AVAILABLE</h5>
@@ -81,6 +82,7 @@ const year = new Date().getFullYear();
                     href={companyInfo.social.instagram}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label={`${companyInfo.name} on Instagram`}
                   >
                     <i class="ri-instagram-line" />
                   </a>
@@ -92,6 +94,7 @@ const year = new Date().getFullYear();
                     href={companyInfo.social.threads}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label={`${companyInfo.name} on Threads`}
                   >
                     <i class="ri-threads-line" />
                   </a>
@@ -103,6 +106,7 @@ const year = new Date().getFullYear();
                     href={companyInfo.social.facebook}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label={`${companyInfo.name} on Facebook`}
                   >
                     <i class="ri-facebook-fill" />
                   </a>

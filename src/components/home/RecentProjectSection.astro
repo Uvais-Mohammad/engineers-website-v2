@@ -1,6 +1,7 @@
 ---
 import fs from 'node:fs';
 import path from 'node:path';
+import SiteImage from '../SiteImage.astro';
 
 const projectDir = path.join(process.cwd(), 'public/assets/img/project');
 const imageExtensions = new Set(['.png', '.jpg', '.jpeg', '.webp', '.avif']);
@@ -77,7 +78,7 @@ const projects = fs
               <div class="col-lg-4">
                 <div class="portfolio-card style4 recent-project-card">
                   <div class="portfolio-card-thumb">
-                    <img src={project.src} alt={project.alt} />
+                    <SiteImage src={project.src} alt={project.alt} />
                     <span class="portfolio-card-number">{project.number}</span>
                   </div>
                   <div class="portfolio-card-details">

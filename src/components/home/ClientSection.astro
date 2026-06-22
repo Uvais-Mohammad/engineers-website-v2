@@ -1,6 +1,7 @@
 ---
 import fs from 'node:fs';
 import path from 'node:path';
+import SiteImage from '../SiteImage.astro';
 
 const clientDir = path.join(process.cwd(), 'public/assets/img/client');
 const imageExtensions = new Set(['.png', '.jpg', '.jpeg', '.webp', '.avif', '.svg']);
@@ -43,7 +44,7 @@ const sliderLogos = [...clientLogos, ...clientLogos];
         sliderLogos.map((logo) => (
           <div class="col-lg-auto">
             <div class="client-logo">
-              <img src={logo.src} alt={logo.alt} />
+              <SiteImage src={logo.src} alt={logo.alt} />
             </div>
           </div>
         ))
@@ -52,7 +53,7 @@ const sliderLogos = [...clientLogos, ...clientLogos];
 
     <!-- <div class="subscribe-area-4" data-bg-src="/assets/img/bg/subscribe-bg4-1.png">
       <div class="subscribe-thumb4-1">
-        <img src="/assets/img/normal/subscribe_4-1.png" alt="img" />
+        <SiteImage src="/assets/img/normal/subscribe_4-1.png" alt="img" />
       </div>
       <div class="subscribe-box">
         <h4 class="subscribe-box_title">Sign up to get the latest updates!</h4>

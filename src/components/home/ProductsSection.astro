@@ -1,4 +1,5 @@
 ---
+import SiteImage from '../SiteImage.astro';
 import { productServices } from '../../data/home';
 ---
 
@@ -32,11 +33,11 @@ import { productServices } from '../../data/home';
               <div class="service-card style6" data-bg-src="/assets/img/bg/service-card-bg6-1.png">
                 <div class="service-card-number">{item.number}</div>
                 <div class="service-card-thumb" data-mask-src="/assets/img/service/service_thumb6_mask.png">
-                  <img src={item.image} alt={item.title} />
+                  <SiteImage src={item.image} alt={item.title} />
                 </div>
                 <div class="service-card_content">
                   <div class="service-card_icon">
-                    <img src={item.icon} alt="" />
+                    <SiteImage src={item.icon} alt="" />
                   </div>
                   <h4 class="service-card_title"><a href="/services/">{item.title}</a></h4>
                   <p class="service-card_text">{item.text}</p>

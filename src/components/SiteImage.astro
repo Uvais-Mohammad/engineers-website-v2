@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import type { HTMLAttributes } from 'astro/types';
+import { publicImageDimensions } from '../data/publicImageDimensions';
+
+type Props = Omit<HTMLAttributes<'img'>, 'src' | 'alt' | 'width' | 'height'> & {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  priority?: boolean;
+};
+
+const { src, alt, width, height, ...attrs } = Astro.props as Props;
+const dimensions = publicImageDimensions[src];
+
+if ((!width || !height) && !dimensions) {
+  throw new Error(`Missing dimensions for image: ${src}`);
+}
+---
+
+<Image
+  src={src}
+  alt={alt}
+  width={width ?? dimensions.width}
+  height={height ?? dimensions.height}
+  {...attrs}
+/>

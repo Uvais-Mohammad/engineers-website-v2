@@ -1,4 +1,5 @@
 ---
+import SiteImage from './SiteImage.astro';
 import { companyInfo } from '../data/company';
 import { mainNavigation } from '../data/navigation';
 ---
@@ -12,7 +13,7 @@ import { mainNavigation } from '../data/navigation';
 <div class="mobile-menu-wrapper">
   <div class="mobile-menu-area">
     <div class="mobile-logo">
-      <a href="/"><img src={companyInfo.logo} alt={companyInfo.name} /></a>
+      <a href="/"><SiteImage src={companyInfo.logo} alt={companyInfo.name} priority /></a>
       <button class="menu-toggle" type="button"><i class="ri-close-line"></i></button>
     </div>
     <div class="mobile-menu">

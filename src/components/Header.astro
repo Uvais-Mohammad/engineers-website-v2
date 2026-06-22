@@ -1,4 +1,5 @@
 ---
+import SiteImage from './SiteImage.astro';
 import { companyInfo } from '../data/company';
 import { mainNavigation } from '../data/navigation';
 
@@ -12,7 +13,7 @@ const currentPath = Astro.url.pathname;
         <div class="row align-items-center justify-content-lg-start justify-content-between">
           <div class="col-auto">
             <div class="header-logo">
-              <a href="/"><img src={companyInfo.logo} alt={companyInfo.name} /></a>
+              <a href="/"><SiteImage src={companyInfo.logo} alt={companyInfo.name} priority /></a>
             </div>
           </div>
           <div class="col-auto ms-auto ms-xxl-0">

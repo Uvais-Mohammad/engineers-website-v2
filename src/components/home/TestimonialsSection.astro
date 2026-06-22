@@ -1,4 +1,5 @@
 ---
+import SiteImage from '../SiteImage.astro';
 import { companyInfo } from '../../data/company';
 import { testimonials } from '../../data/home';
 
@@ -51,10 +52,10 @@ const faqs = [
               <div class="col-lg-6">
                 <div class="testi-card">
                   <div class="quote-icon">
-                    <img src="/assets/img/icon/quote.svg" alt="Quote icon" />
+                    <SiteImage src="/assets/img/icon/quote.svg" alt="Quote icon" />
                   </div>
                   <div class="testi-card-thumb">
-                    <img src={item.image} alt={item.name} />
+                    <SiteImage src={item.image} alt={item.name} />
                   </div>
                   <div class="testi-card_content">
                     <h4 class="testi-card_title">{item.title}</h4>
