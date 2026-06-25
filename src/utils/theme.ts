@@ -36,10 +36,15 @@ function sanitize(html: string) {
     .replace(/<img(?![^>]*\bloading=)([^>]*?)>/g, '<img loading="lazy"$1>');
 }
 
+function findTagStart(source: string, pattern: RegExp) {
+  const match = pattern.exec(source);
+  return match?.index ?? -1;
+}
+
 export function getSharedShell() {
   const bodyStart = sharedSource.indexOf('<body>');
-  const headerStart = sharedSource.indexOf('<header class="nav-header');
-  const footerStart = sharedSource.indexOf('<footer class="footer-wrapper');
+  const headerStart = findTagStart(sharedSource, /<header\b[^>]*class="[^"]*\bnav-header\b[^"]*"/i);
+  const footerStart = findTagStart(sharedSource, /<footer\b[^>]*class="[^"]*\bfooter-wrapper\b[^"]*"/i);
   const footerEnd = sharedSource.indexOf('</footer>') + '</footer>'.length;
 
   return {
@@ -51,7 +56,7 @@ export function getSharedShell() {
 
 export function getPageHtml(fileName: string) {
   const source = readSource(fileName);
-  const match = source.match(/<\/header>([\s\S]*?)<footer class="footer-wrapper/i);
+  const match = source.match(/<\/header>([\s\S]*?)<footer\b[^>]*class="[^"]*\bfooter-wrapper\b[^"]*"/i);
   if (!match) {
     throw new Error(`Unable to extract page content from ${fileName}`);
   }
