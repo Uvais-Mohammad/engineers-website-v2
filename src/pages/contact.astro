@@ -1,5 +1,5 @@
 ---
-import { companyInfo } from '../data/company';
+import { companyInfo, companyLocations } from '../data/company';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -29,65 +29,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="contact-page-area space">
     <div class="container">
       <div class="row gy-4 justify-content-center">
-        <div class="col-md-6 col-lg-4">
-          <div class="contact-page-card bg-smoke">
-            <div class="contact-page-card-details">
-              <h4 class="contact-page-card_title">Main Office</h4>
-              <div class="contact-page-card-text">
-                <i class="ri-phone-line"></i>
-                <a class="contact-page-card_link" href="tel:0022730240369">+00 (22) 730 240 369</a>
+        {companyLocations.map((location) => (
+          <div class="col-md-6 col-lg-6">
+            <div class="contact-page-card bg-smoke">
+              <div class="contact-page-card-details">
+                <h4 class="contact-page-card_title">{location.name}</h4>
+                {location.addressLines.map((line) => (
+                  <div class="contact-page-card-text">
+                    <i class="ri-map-pin-line"></i>
+                    <span>{line}</span>
+                  </div>
+                ))}
+                {location.phone && location.phoneHref && (
+                  <div class="contact-page-card-text">
+                    <i class="ri-phone-line"></i>
+                    <a class="contact-page-card_link" href={`tel:${location.phoneHref}`}>{location.phone}</a>
+                  </div>
+                )}
+                <div class="contact-page-card-text">
+                  <i class="ri-mail-line"></i>
+                  <a class="contact-page-card_link" href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
+                </div>
               </div>
-              <div class="contact-page-card-text">
-                <i class="ri-mail-line"></i>
-                <a class="contact-page-card_link" href="mailto:construz.info@gmail.com">construz.info@gmail.com</a>
+              <div class="contact-page-card-thumb">
+                {location.media.type === 'map' ? (
+                  <iframe
+                    src={location.media.src}
+                    title={location.media.title}
+                    loading="lazy"
+                    allowfullscreen
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                ) : (
+                  <img src={location.media.src} alt={location.media.alt} loading="lazy" decoding="async" />
+                )}
               </div>
-              <div class="contact-page-card-text"><i class="ri-time-line"></i>Mon - Sat 10.00 - 18.00</div>
-            </div>
-            <div class="contact-page-card-thumb">
-              <img src="/assets/img/normal/contact_page1-1.png" alt="img" loading="lazy" decoding="async" />
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="contact-page-card bg-smoke">
-            <div class="contact-page-card-details">
-              <h4 class="contact-page-card_title">London Office</h4>
-              <div class="contact-page-card-text">
-                <i class="ri-phone-line"></i>
-                <a class="contact-page-card_link" href="tel:0022730240369">+32 (0) 800 240 458</a>
-              </div>
-              <div class="contact-page-card-text">
-                <i class="ri-mail-line"></i>
-                <a class="contact-page-card_link" href="mailto:construz.info@gmail.com">construz.info@gmail.com</a>
-              </div>
-              <div class="contact-page-card-text"><i class="ri-time-line"></i>Mon - Sat 12.00 - 20.00</div>
-            </div>
-            <div class="contact-page-card-thumb">
-              <img src="/assets/img/normal/contact_page1-2.png" alt="img" loading="lazy" decoding="async" />
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="contact-page-card bg-smoke">
-            <div class="contact-page-card-details">
-              <h4 class="contact-page-card_title">New York City</h4>
-              <div class="contact-page-card-text">
-                <i class="ri-phone-line"></i>
-                <a class="contact-page-card_link" href="tel:0022730240369">+32 (0) 800 240 458</a>
-              </div>
-              <div class="contact-page-card-text">
-                <i class="ri-mail-line"></i>
-                <a class="contact-page-card_link" href="mailto:construz.info@gmail.com">construz.info@gmail.com</a>
-              </div>
-              <div class="contact-page-card-text"><i class="ri-time-line"></i>Mon - Sat 08.00 - 16.00</div>
-            </div>
-            <div class="contact-page-card-thumb">
-              <img src="/assets/img/normal/contact_page1-3.png" alt="img" loading="lazy" decoding="async" />
             </div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -169,4 +148,5 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       ></iframe>
     </div>
   </div>
+
 </BaseLayout>

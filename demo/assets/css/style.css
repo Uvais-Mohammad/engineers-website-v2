@@ -9703,12 +9703,18 @@ li.trackback {
   color: var(--theme-color);
 }
 .contact-page-card .contact-page-card-thumb {
-  margin-top: 120px;
+  margin-top: 90px;
 }
 .contact-page-card .contact-page-card-thumb img {
-  height: 280px;
+  height: 220px;
   width: 100%;
   object-fit: cover;
+}
+.contact-page-card .contact-page-card-thumb iframe {
+  height: 220px;
+  width: 100%;
+  border: 0;
+  display: block;
 }
 
 .map-sec {
