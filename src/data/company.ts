@@ -65,7 +65,7 @@ export const companyLocations = [
   {
     name: "Thangilakadavu, Mavoor",
     label: "Interlocks",
-    addressLines: ["Near MRPL Petrol Pump, Near 11th Mile"],
+    addressLines: ["Mavoor - Calicut Road, Thangilakadavu, Malappuram, 673 638 "],
     phone: "+91 9061 015 549",
     phoneHref: "+919061015549",
     media: {
