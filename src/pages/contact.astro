@@ -5,7 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title={`${companyInfo.name} | Contact`}
-  description="Contact Engineers Interlocks for premium interlocks, designer tiles, and hollow bricks in Kerala. Visit our branches or request a quote for your project."
+  description="Contact Engineers Interlocks for premium interlocks, designer tiles, and hollow bricks in Kerala. Visit our branches, call us, or request a quote for your project."
   canonical="/contact/"
 >
   <div class="breadcumb-wrapper" data-bg-src="/assets/img/bg/breadcrumb-bg.png">
@@ -36,6 +36,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         {companyLocations.map((location) => (
           <div class="col-md-6 col-lg-6">
             <div class="contact-page-card bg-smoke">
+              <span class="contact-page-card_label">{location.label}</span>
               <div class="contact-page-card-details">
                 <h4 class="contact-page-card_title">{location.name}</h4>
                 {location.addressLines.map((line) => (
@@ -138,18 +139,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <div class="map-area overflow-hidden">
-    <div class="map-sec">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3644.7310056272386!2d89.2286059153658!3d24.00527418490799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fe9b97badc6151%3A0x30b048c9fb2129bc!2s!5e0!3m2!1sen!2sbd!4v1651028958211!5m2!1sen!2sbd"
-        title="Contact location"
-        allowfullscreen
-        loading="lazy"
-      ></iframe>
-    </div>
-  </div>
-
   <style>
+    .contact-page-card .contact-page-card_label {
+      position: absolute;
+      top: 22px;
+      left: auto;
+      right: 22px !important;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--theme-color);
+      color: var(--white-color);
+      box-shadow: 0 10px 24px rgba(217, 37, 39, 0.22);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     .contact-page-card {
       position: relative;
       overflow: hidden;
@@ -184,18 +193,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       transform: translateX(140%) rotate(8deg);
     }
 
-    .contact-page-card-thumb iframe {
+    .contact-page-card .contact-page-card-thumb {
+      margin-top: 40px;
+    }
+
+    .contact-page-card .contact-page-card-thumb iframe {
       height: 300px;
     }
 
-    .map-sec iframe {
-      height: 680px;
-    }
-
-    @media (max-width: 991px) {
-      .map-sec iframe {
-        height: 460px;
+    @media (max-width: 575px) {
+      .contact-page-card .contact-page-card_label {
+        top: 18px;
+        left: auto;
+        right: 18px !important;
+        padding: 6px 12px;
+        font-size: 11px;
       }
+
     }
   </style>
 
