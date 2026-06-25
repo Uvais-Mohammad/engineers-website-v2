@@ -1,8 +1,8 @@
-import fs from 'node:fs';
-import path from 'node:path';
-
-const demoRoot = path.resolve(process.cwd(), 'demo');
-const sharedSource = readSource('index.html');
+const demoModules = import.meta.glob('../../demo/*.html', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
 
 const routeMap: Record<string, string> = {
   'index.html': '/',
@@ -23,9 +23,15 @@ const routeMap: Record<string, string> = {
   'contact.html': '/contact/',
 };
 
-function readSource(fileName: string) {
-  return fs.readFileSync(path.join(demoRoot, fileName), 'utf8');
+function getSource(fileName: string) {
+  const entry = Object.entries(demoModules).find(([filePath]) => filePath.endsWith(`/${fileName}`));
+  if (!entry) {
+    throw new Error(`Missing demo source for ${fileName}`);
+  }
+  return entry[1];
 }
+
+const sharedSource = getSource('index.html');
 
 function sanitize(html: string) {
   return html
@@ -55,7 +61,7 @@ export function getSharedShell() {
 }
 
 export function getPageHtml(fileName: string) {
-  const source = readSource(fileName);
+  const source = getSource(fileName);
   const match = source.match(/<\/header>([\s\S]*?)<footer\b[^>]*class="[^"]*\bfooter-wrapper\b[^"]*"/i);
   if (!match) {
     throw new Error(`Unable to extract page content from ${fileName}`);
@@ -64,7 +70,7 @@ export function getPageHtml(fileName: string) {
 }
 
 export function getPageTitle(fileName: string) {
-  const source = readSource(fileName);
+  const source = getSource(fileName);
   const title = source.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1] ?? 'Engineers';
   return title.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 }

@@ -1,27 +1,28 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
 import SiteImage from '../SiteImage.astro';
 
-const clientDir = path.join(process.cwd(), 'public/assets/img/client');
-const imageExtensions = new Set(['.png', '.jpg', '.jpeg', '.webp', '.avif', '.svg']);
-
-const toLabel = (value) =>
+const toLabel = (value: string) =>
   value
     .replace(/[-_]+/g, ' ')
     .split(/\s+/)
     .filter(Boolean)
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 
-const clientLogos = fs
-  .readdirSync(clientDir)
-  .filter((file) => imageExtensions.has(path.extname(file).toLowerCase()))
-  .filter((file) => !/^client-\d-/i.test(path.parse(file).name))
+const clientLogoFiles = [
+  'asset-homes-logo.png',
+  'aster-mims.png',
+  'calicut-trade-centre.png',
+  'ima-doctors-enclave.png',
+  'landmark-builders.png',
+  'nayara-energy-logo.png',
+];
+
+const clientLogos = clientLogoFiles
   .sort((a, b) => a.localeCompare(b))
   .map((file) => ({
     src: `/assets/img/client/${file}`,
-    alt: toLabel(path.parse(file).name),
+    alt: toLabel(file.replace(/\.[^.]+$/, '')),
   }));
 
 const sliderLogos = [...clientLogos, ...clientLogos];

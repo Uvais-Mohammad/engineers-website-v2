@@ -1,19 +1,14 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
 import SiteImage from '../SiteImage.astro';
 
-const projectDir = path.join(process.cwd(), 'public/assets/img/project');
-const imageExtensions = new Set(['.png', '.jpg', '.jpeg', '.webp', '.avif']);
-
-const toTitleCase = (value) =>
+const toTitleCase = (value: string) =>
   value
     .split(/\s+/)
     .filter(Boolean)
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 
-const parseProjectMeta = (slug) => {
+const parseProjectMeta = (slug: string) => {
   const match = slug.match(/^(.*)\(([^)]+)\)$/);
   const rawTitle = match ? match[1] : slug;
   const rawAddress = match ? match[2] : '';
@@ -24,13 +19,18 @@ const parseProjectMeta = (slug) => {
   };
 };
 
-const projects = fs
-  .readdirSync(projectDir)
-  .filter((file) => imageExtensions.has(path.extname(file).toLowerCase()))
-  .filter((file) => !/^project/i.test(path.parse(file).name))
+const projectFiles = [
+  'asset-homes(Kannur).png',
+  'calicut-trade-centre(Calicut).png',
+  'confident-group(Calicut).png',
+  'landmark-world(Calicut).png',
+  'nayara-energy(calicut).png',
+];
+
+const projects = projectFiles
   .sort((a, b) => a.localeCompare(b))
   .map((file, index) => {
-    const slug = path.parse(file).name;
+    const slug = file.replace(/\.[^.]+$/, '');
     const projectMeta = parseProjectMeta(slug);
 
     return {
