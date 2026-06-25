@@ -1,10 +1,212 @@
 ---
-import PageHtml from '../components/PageHtml.astro';
-import { companyInfo } from '../data/company';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { getPageHtml } from '../utils/theme';
+import { readdir } from "node:fs/promises";
+import { join } from "node:path";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { companyInfo } from "../data/company";
+
+interface ProductItem {
+  name: string;
+  image: string;
+}
+
+interface PaginationItem {
+  label: string;
+  href: string;
+  active?: boolean;
+  icon?: string;
+}
+
+const productDir = join(process.cwd(), "public/assets/img/product");
+const productFiles = (await readdir(productDir))
+  .filter((file) => /\.(png|jpe?g|webp|avif)$/i.test(file))
+  .sort((a, b) => a.localeCompare(b));
+
+const products: ProductItem[] = productFiles.map((file) => ({
+  name: file.replace(/\.[^.]+$/, ""),
+  image: `/assets/img/product/${encodeURI(file)}`,
+}));
+
+const featuredProduct = products[0];
+
+const pagination: PaginationItem[] = [
+  { label: "01", href: "/products/", active: true },
+  { label: "02", href: "/products/?page=2" },
+  { label: "03", href: "/products/?page=3" },
+  { label: "next", href: "/products/?page=2", icon: "ri-arrow-right-line" },
+];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: `${companyInfo.name} Products`,
+  description:
+    "Browse construction tools, accessories, and equipment on the Engineers Interlocks product page.",
+  url: new URL("/products/", companyInfo.website).href,
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: products.map((product, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Product",
+        name: product.name,
+        image: new URL(product.image, companyInfo.website).href,
+      },
+    })),
+  },
+};
 ---
 
-<BaseLayout title={`${companyInfo.name} | Products`} description="Product and catalog page converted from the original static theme into Astro." canonical="/products/">
-  <PageHtml html={getPageHtml('shop.html')} />
+<BaseLayout
+  title={`${companyInfo.name} | Products`}
+  description="Browse the Engineers Interlocks product catalog featuring construction tools, accessories, and equipment."
+  canonical="/products/"
+  schema={productSchema}
+>
+  {
+    featuredProduct && (
+      <div id="QuickView" class="white-popup mfp-hide">
+        <div class="container bg-white">
+          <div class="row gx-60">
+            <div class="col-lg-6">
+              <div class="product-big-img">
+                <div class="img">
+                  <img
+                    src={featuredProduct.image}
+                    alt={featuredProduct.name}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 align-self-center">
+              <div class="product-about">
+                <h2 class="product-title">{featuredProduct.name}</h2>
+                <p class="text">
+                  Explore this product from the Engineers Interlocks catalog.
+                  Contact us for specifications, availability, and project
+                  support.
+                </p>
+                <div class="actions">
+                  <a class="btn" href="/contact/">Request Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button title="Close (Esc)" type="button" class="mfp-close"
+            >&times;</button
+          >
+        </div>
+      </div>
+    )
+  }
+
+  <div
+    class="breadcumb-wrapper"
+    data-bg-src="/assets/img/bg/breadcrumb-bg.jpeg"
+  >
+    <div
+      class="section-animation-shape1-1 shape-mockup animation-infinite"
+      data-top="0"
+      data-bg-src="/assets/img/shape/global-line-shape1.png"
+    >
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Products</h1>
+            <ul class="breadcumb-menu">
+              <li><a href="/"><i class="ri-home-4-fill"></i> HOME</a></li>
+              <li class="active">PRODUCTS</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="space-top space-extra-bottom">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="row gy-40">
+            {
+              products.map((product) => (
+                <div class="col-xl-4 col-md-6">
+                  <div class="product-card">
+                    <div class="product-img">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    <div class="actions">
+                        <a
+                          href="#QuickView"
+                          class="icon-btn popup-content"
+                          aria-label={`Quick view ${product.name}`}
+                        >
+                          <i class="ri-eye-line" />
+                        </a>
+                        <a
+                          href="/cart/"
+                          class="icon-btn"
+                          aria-label={`Add ${product.name} to cart`}
+                        >
+                          <i class="ri-shopping-cart-line" />
+                        </a>
+                        <a
+                          href="/wishlist/"
+                          class="icon-btn"
+                          aria-label={`Add ${product.name} to wishlist`}
+                        >
+                          <i class="ri-heart-line" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <div class="pagination justify-content-center">
+            <ul>
+              {
+                pagination.map((item) => (
+                  <li>
+                    <a
+                      class:list={{ active: item.active }}
+                      href={item.href}
+                      aria-current={item.active ? "page" : undefined}
+                    >
+                      {item.icon ? <i class={item.icon} /> : item.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .product-card .product-img {
+      padding: 0;
+      margin-bottom: 0;
+      text-align: left;
+    }
+
+    .product-card .product-img img {
+      display: block;
+      width: 100%;
+      transform: none;
+      object-fit: cover;
+    }
+  </style>
 </BaseLayout>
