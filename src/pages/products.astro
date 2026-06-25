@@ -1,13 +1,7 @@
 ---
-import { readdir } from "node:fs/promises";
-import { join } from "node:path";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { companyInfo } from "../data/company";
-
-interface ProductItem {
-  name: string;
-  image: string;
-}
+import { products } from "../data/products";
 
 interface PaginationItem {
   label: string;
@@ -15,16 +9,6 @@ interface PaginationItem {
   active?: boolean;
   icon?: string;
 }
-
-const productDir = join(process.cwd(), "public/assets/img/product");
-const productFiles = (await readdir(productDir))
-  .filter((file) => /\.(png|jpe?g|webp|avif)$/i.test(file))
-  .sort((a, b) => a.localeCompare(b));
-
-const products: ProductItem[] = productFiles.map((file) => ({
-  name: file.replace(/\.[^.]+$/, ""),
-  image: `/assets/img/product/${encodeURI(file)}`,
-}));
 
 const featuredProduct = products[0];
 
