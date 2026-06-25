@@ -92,7 +92,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 </span>
                 <h2 class="sec-title">Have a project in mind?</h2>
               </div>
-              <form action="#" method="POST" class="contact-form ajax-contact">
+              <form action={`https://formsubmit.co/61c0bacca2b4fc9f2f41db37ed16e37d`} method="POST" class="contact-form">
+                <input type="hidden" name="_subject" value={`New contact form submission | ${companyInfo.name}`} />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
                 <div class="row gy-4">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -129,7 +132,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <button class="btn w-100">Submit Now <i class="ri-arrow-right-up-line"></i></button>
                   </div>
                 </div>
-                <p class="form-messages mb-0 mt-3"></p>
               </form>
             </div>
           </div>
