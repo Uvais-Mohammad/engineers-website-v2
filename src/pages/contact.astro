@@ -52,17 +52,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 </div>
               </div>
               <div class="contact-page-card-thumb">
-                {location.media.type === 'map' ? (
-                  <iframe
-                    src={location.media.src}
-                    title={location.media.title}
-                    loading="lazy"
-                    allowfullscreen
-                    referrerpolicy="no-referrer-when-downgrade"
-                  ></iframe>
-                ) : (
-                  <img src={location.media.src} alt={location.media.alt} loading="lazy" decoding="async" />
-                )}
+                <iframe
+                  src={location.media.src}
+                  title={location.media.title}
+                  loading="lazy"
+                  allowfullscreen
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </div>
           </div>
@@ -148,5 +144,55 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       ></iframe>
     </div>
   </div>
+
+  <style>
+    .contact-page-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--theme-color);
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+    }
+
+    .contact-page-card::before {
+      content: '';
+      position: absolute;
+      inset: -35%;
+      background: linear-gradient(
+        120deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 65%
+      );
+      transform: translateX(-140%) rotate(8deg);
+      transition: transform 0.6s ease;
+      pointer-events: none;
+    }
+
+    .contact-page-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .contact-page-card:hover::before {
+      transform: translateX(140%) rotate(8deg);
+    }
+
+    .contact-page-card-thumb iframe {
+      height: 300px;
+    }
+
+    .map-sec iframe {
+      height: 680px;
+    }
+
+    @media (max-width: 991px) {
+      .map-sec iframe {
+        height: 460px;
+      }
+    }
+  </style>
 
 </BaseLayout>
