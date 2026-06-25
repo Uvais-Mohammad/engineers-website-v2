@@ -42,8 +42,8 @@ export const companyLocations = [
     name: "Vettukad",
     label: "HollowBricks",
     addressLines: ["Opp. Valiyaparamba Road"],
-    phone: "+91 9061 015 552",
-    phoneHref: "+919061015552",
+    phone: "+91 9061 015 549",
+    phoneHref: "+919061015549",
     media: {
       type: "map",
       title: "Vettukad branch location",
@@ -64,10 +64,10 @@ export const companyLocations = [
   },
   {
     name: "Thangilakadavu, Mavoor",
-    label: "HollowBricks",
+    label: "Interlocks",
     addressLines: ["Near MRPL Petrol Pump, Near 11th Mile"],
-    phone: "+91 9061 015 562",
-    phoneHref: "+919061015562",
+    phone: "+91 9061 015 549",
+    phoneHref: "+919061015549",
     media: {
       type: "map",
       title: "Thangilakadavu branch location",
