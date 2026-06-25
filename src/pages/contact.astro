@@ -33,7 +33,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="contact-page-area space">
     <div class="container">
       <div class="row gy-4 justify-content-center">
-        {companyLocations.map((location) => (
+        {companyLocations.map((location, index) => (
           <div class="col-md-6 col-lg-6">
             <div class="contact-page-card bg-smoke">
               <span class="contact-page-card_label">{location.label}</span>
@@ -60,7 +60,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <iframe
                   src={location.media.src}
                   title={location.media.title}
-                  loading="lazy"
+                  loading={index < 2 ? 'eager' : 'lazy'}
                   allowfullscreen
                   referrerpolicy="no-referrer-when-downgrade"
                 ></iframe>
