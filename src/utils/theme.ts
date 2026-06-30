@@ -11,7 +11,7 @@ const routeMap: Record<string, string> = {
   'about.html': '/about/',
   'service.html': '/services/',
   'service-details.html': '/service-details/',
-  'project.html': '/projects/',
+  'project.html': '/image-gallery/',
   'project-details.html': '/project-details/',
   'shop.html': '/products/',
   'shop-details.html': '/product-details/',

@@ -1,0 +1,72 @@
+---
+import GalleryGrid from '../components/gallery/GalleryGrid';
+import { companyInfo } from '../data/company';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const supabaseUrl =
+  import.meta.env.VITE_SUPABASE_URL?.trim() ??
+  import.meta.env.PUBLIC_SUPABASE_URL?.trim() ??
+  '';
+const supabaseAnonKey =
+  import.meta.env.VITE_SUPABASE_ANON_KEY?.trim() ??
+  import.meta.env.PUBLIC_SUPABASE_ANON_KEY?.trim() ??
+  '';
+---
+
+<BaseLayout
+  title={`${companyInfo.name} | Gallery`}
+  description="Browse recent gallery images from Engineers Interlocks, updated directly from the company gallery."
+  canonical="/image-gallery/"
+>
+  <div class="breadcumb-wrapper" data-bg-src="/assets/img/bg/breadcrumb-bg.png">
+    <div
+      class="section-animation-shape1-1 shape-mockup animation-infinite"
+      data-top="0"
+      data-bg-src="/assets/img/shape/global-line-shape1.png"
+    >
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Gallery</h1>
+            <ul class="breadcumb-menu">
+              <li><a href="/"><i class="ri-home-4-fill"></i> HOME</a></li>
+              <li class="active">GALLERY</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="portfolio-area-1 space">
+    <div class="container">
+      <div class="title-area text-center">
+        <span class="sub-title">
+          <img
+            src="/assets/img/icon/section-subtitle-icon.svg"
+            alt="Gallery subtitle icon"
+            loading="lazy"
+            decoding="async"
+          />
+          Live Gallery
+        </span>
+        <h2 class="sec-title">Recent gallery images</h2>
+      </div>
+
+      <GalleryGrid
+        client:load
+        supabaseUrl={supabaseUrl}
+        supabaseAnonKey={supabaseAnonKey}
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .gallery-intro {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+</style>
