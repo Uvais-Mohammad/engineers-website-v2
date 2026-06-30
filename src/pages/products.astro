@@ -10,7 +10,15 @@ interface PaginationItem {
   icon?: string;
 }
 
-const featuredProduct = products[0];
+const whatsappNumber = companyInfo.whatsapp.replace(/\D/g, "");
+
+const getProductWhatsappUrl = (productName: string) => {
+  const message = encodeURIComponent(
+    `Hello ${companyInfo.name}, I would like to enquire about ${productName}. Please share the details.`,
+  );
+
+  return `https://wa.me/${whatsappNumber}?text=${message}`;
+};
 
 const pagination: PaginationItem[] = [
   { label: "01", href: "/products/", active: true },
@@ -43,21 +51,21 @@ const productSchema = {
 
 <BaseLayout
   title={`${companyInfo.name} | Products`}
-  description="Browse the Engineers Interlocks product catalog featuring construction tools, accessories, and equipment."
+  description="Explore the Engineers Interlocks product catalog, featuring premium interlocks, designer tiles, and  hollow bricks crafted for durable and visually refined outdoor spaces."
   canonical="/products/"
   schema={productSchema}
 >
   {
-    featuredProduct && (
-      <div id="QuickView" class="white-popup mfp-hide">
+    products.map((product, index) => (
+      <div id={`QuickView-${index}`} class="white-popup mfp-hide">
         <div class="container bg-white">
           <div class="row gx-60">
             <div class="col-lg-6">
               <div class="product-big-img">
                 <div class="img">
                   <img
-                    src={featuredProduct.image}
-                    alt={featuredProduct.name}
+                    src={product.image}
+                    alt={product.name}
                     loading="lazy"
                     decoding="async"
                   />
@@ -66,14 +74,21 @@ const productSchema = {
             </div>
             <div class="col-lg-6 align-self-center">
               <div class="product-about">
-                <h2 class="product-title">{featuredProduct.name}</h2>
+                <h2 class="product-title">{product.name}</h2>
                 <p class="text">
                   Explore this product from the Engineers Interlocks catalog.
                   Contact us for specifications, availability, and project
                   support.
                 </p>
                 <div class="actions">
-                  <a class="btn" href="/contact/">Request Details</a>
+                  <a
+                    class="btn"
+                    href={getProductWhatsappUrl(product.name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Request Details
+                  </a>
                 </div>
               </div>
             </div>
@@ -83,7 +98,7 @@ const productSchema = {
           >
         </div>
       </div>
-    )
+    ))
   }
 
   <div
@@ -117,7 +132,7 @@ const productSchema = {
         <div class="col-12">
           <div class="row gy-40">
             {
-              products.map((product) => (
+              products.map((product, index) => (
                 <div class="col-xl-4 col-md-6">
                   <div class="product-card">
                     <div class="product-img">
@@ -129,25 +144,11 @@ const productSchema = {
                       />
                     <div class="actions">
                         <a
-                          href="#QuickView"
+                          href={`#QuickView-${index}`}
                           class="icon-btn popup-content"
                           aria-label={`Quick view ${product.name}`}
                         >
                           <i class="ri-eye-line" />
-                        </a>
-                        <a
-                          href="/cart/"
-                          class="icon-btn"
-                          aria-label={`Add ${product.name} to cart`}
-                        >
-                          <i class="ri-shopping-cart-line" />
-                        </a>
-                        <a
-                          href="/wishlist/"
-                          class="icon-btn"
-                          aria-label={`Add ${product.name} to wishlist`}
-                        >
-                          <i class="ri-heart-line" />
                         </a>
                       </div>
                     </div>
