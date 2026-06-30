@@ -5,6 +5,7 @@ export interface WebsiteGallery {
   image_url: string;
   storage_path: string;
   created_at: string;
+  display_order: number | null;
 }
 
 interface WebsiteGalleryRow {
@@ -12,6 +13,7 @@ interface WebsiteGalleryRow {
   image_url: unknown;
   storage_path: unknown;
   created_at: unknown;
+  display_order: unknown;
 }
 
 const isNonEmptyString = (value: unknown): value is string => typeof value === 'string' && value.trim().length > 0;
@@ -49,6 +51,7 @@ const toWebsiteGallery = (row: WebsiteGalleryRow, getPublicUrl: (path: string) =
 
   const imageUrl = resolveImageUrl(row, getPublicUrl);
   const storagePath = isNonEmptyString(row.storage_path) ? row.storage_path.trim() : '';
+  const displayOrder = typeof row.display_order === 'number' ? row.display_order : null;
 
   if (!imageUrl) {
     return null;
@@ -59,6 +62,7 @@ const toWebsiteGallery = (row: WebsiteGalleryRow, getPublicUrl: (path: string) =
     image_url: imageUrl,
     storage_path: storagePath,
     created_at: row.created_at.trim(),
+    display_order: displayOrder,
   };
 };
 
@@ -73,7 +77,8 @@ export const galleryService = {
     const { client } = clientResult;
     const { data, error } = await client
       .from('website_gallery')
-      .select('id, image_url, storage_path, created_at')
+      .select('id, image_url, storage_path, created_at, display_order')
+      .order('display_order', { ascending: true, nullsFirst: false })
       .order('created_at', { ascending: false });
 
     if (error) {
