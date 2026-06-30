@@ -12,3 +12,4 @@ yarn-error.log*
 pnpm-debug.log*
 *lock
 package-lock.json
+.env*
