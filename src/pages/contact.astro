@@ -1,5 +1,6 @@
 ---
 import { companyInfo, companyLocations } from '../data/company';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -8,27 +9,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Contact Engineers Interlocks for premium interlocks, designer tiles, and hollow bricks in Kerala. Visit our branches, call us, or request a quote for your project."
   canonical="/contact/"
 >
-  <div class="breadcumb-wrapper" data-bg-src="/assets/img/bg/breadcrumb-bg.jpeg">
-    <div
-      class="section-animation-shape1-1 shape-mockup animation-infinite"
-      data-top="0"
-      data-bg-src="/assets/img/shape/global-line-shape1.png"
-    >
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="breadcumb-content">
-            <h1 class="breadcumb-title">Contact Us</h1>
-            <ul class="breadcumb-menu">
-              <li><a href="/"><i class="ri-home-4-fill"></i> HOME</a></li>
-              <li class="active">CONTACT US</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <Breadcrumb title="Contact Us" activeLabel="CONTACT US" background="/assets/img/bg/breadcrumb-bg.jpeg" />
 
   <section class="contact-page-area space">
     <div class="container">
