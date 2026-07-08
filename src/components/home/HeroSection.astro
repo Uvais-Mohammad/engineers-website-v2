@@ -194,7 +194,10 @@ import { heroSlides } from '../../data/home';
     }
 
     .hero-award-wrap {
-      width: 280px;
+      width: 100vw;
+      max-width: none;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
       padding: 14px;
     }
 
@@ -206,6 +209,13 @@ import { heroSlides } from '../../data/home';
     .hero-award-icon img.hero-matterlab-logo {
       width: 82px;
       height: 82px;
+    }
+
+    .hero-contact-info-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
   }
 </style>

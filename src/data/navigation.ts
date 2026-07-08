@@ -1,4 +1,9 @@
-export const mainNavigation = [
+type NavigationLink = {
+  label: string;
+  href: string;
+};
+
+export const mainNavigation: NavigationLink[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about/' },
   { label: 'Gallery', href: '/image-gallery/' },
@@ -6,7 +11,7 @@ export const mainNavigation = [
   { label: 'Contact', href: '/contact/' },
 ];
 
-export const footerLinks = {
+export const footerLinks: Record<'company' | 'support', NavigationLink[]> = {
   company: [
     { label: 'About Us', href: '/about/' },
     { label: 'Our Products', href: '/products/' },

@@ -9,7 +9,7 @@ export const companyInfo = {
     "Near Vijaya Bank, Edavannappara Road, Mundakkulam (Kondotty), Malappuram 673 638",
   website: "https://engineers-website-v2.engineerspaver-ea1.workers.dev",
   whatsapp: "+919061686999",
-  businessHours: "Mon-Sat 10:00-19:30",
+  businessHours: "9:00 am - 6:30 pm",
   mapsUrl:
     "https://maps.google.com/?q=Near+Vijaya+Bank+Edavannappara+Road+Mundakkulam+Kondotty+Malappuram+673638",
   logo: "/assets/img/logo.avif",

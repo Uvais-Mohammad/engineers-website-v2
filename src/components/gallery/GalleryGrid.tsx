@@ -67,12 +67,17 @@ export default function GalleryGrid({ supabaseUrl, supabaseAnonKey }: Props) {
       {!loading && !error && images.length > 0 ? (
         <div className="project-page">
           <div className="row gy-40 justify-content-center" role="list">
-          {images.map((image, index) => (
-            <div key={image.id} className="col-md-6 col-lg-4" role="listitem">
-              <GalleryCard image={image} index={index} onPreview={setSelectedIndex} />
-            </div>
-          ))}
-        </div>
+            {images.map((image, index) => (
+              <div
+                key={image.id}
+                className="col-md-6 col-lg-4 gallery-reveal"
+                role="listitem"
+                style={{ '--gallery-delay': `${Math.min(index, 8) * 80}ms` } as React.CSSProperties}
+              >
+                <GalleryCard image={image} index={index} onPreview={setSelectedIndex} />
+              </div>
+            ))}
+          </div>
         </div>
       ) : null}
 
@@ -109,6 +114,11 @@ export default function GalleryGrid({ supabaseUrl, supabaseAnonKey }: Props) {
       ) : null}
 
       <style>{`
+        .gallery-reveal {
+          animation: gallery-slide-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+          animation-delay: var(--gallery-delay);
+        }
+
         .gallery-project-card {
           position: relative;
           height: 100%;
@@ -169,38 +179,6 @@ export default function GalleryGrid({ supabaseUrl, supabaseAnonKey }: Props) {
         .gallery-project-card:focus-within .gallery-card__preview {
           opacity: 1;
           transform: translate(50%, -50%);
-        }
-
-        .gallery-skeleton__line,
-        .gallery-skeleton__button {
-          border-radius: 999px;
-          background: linear-gradient(90deg, rgba(226, 232, 240, 0.75), rgba(255, 255, 255, 0.95), rgba(226, 232, 240, 0.75));
-          background-size: 200% 100%;
-          animation: gallery-shimmer 1.6s linear infinite;
-        }
-
-        .gallery-skeleton__line {
-          height: 14px;
-          margin-bottom: 16px;
-        }
-
-        .gallery-skeleton__line--short {
-          width: 110px;
-        }
-
-        .gallery-skeleton__line--title {
-          width: 82%;
-          height: 22px;
-        }
-
-        .gallery-skeleton__line--text {
-          width: 58%;
-        }
-
-        .gallery-skeleton__button {
-          width: 150px;
-          height: 48px;
-          margin-top: auto;
         }
 
         .gallery-card--skeleton {
@@ -304,6 +282,17 @@ export default function GalleryGrid({ supabaseUrl, supabaseAnonKey }: Props) {
           }
         }
 
+        @keyframes gallery-slide-up {
+          from {
+            opacity: 0;
+            transform: translateY(42px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
         @media (max-width: 991px) {
         }
 
@@ -330,7 +319,8 @@ export default function GalleryGrid({ supabaseUrl, supabaseAnonKey }: Props) {
           .gallery-card__media img,
           .gallery-card__overlay,
           .gallery-card--skeleton,
-          .gallery-skeleton__media {
+          .gallery-skeleton__media,
+          .gallery-reveal {
             animation: none;
             transition: none;
           }
