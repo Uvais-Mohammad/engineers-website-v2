@@ -17,7 +17,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         {companyLocations.map((location, index) => (
           <div class="col-md-6 col-lg-6">
             <div class="contact-page-card bg-smoke">
-              <span class="contact-page-card_label">{location.label}</span>
+              {/* <span class="contact-page-card_label">{location.label}</span> */}
               <div class="contact-page-card-details">
                 <h4 class="contact-page-card_title">{location.name}</h4>
                 {location.addressLines.map((line) => (

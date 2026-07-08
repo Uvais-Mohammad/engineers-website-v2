@@ -479,7 +479,46 @@ const sliderLogos = [...clientLogos, ...clientLogos];
         </div>
       </div>
     </div>
-
+ <!--==============================
+    Client Area  
+    ==============================-->
+    <div
+      class="client-area-1 text-center space overflow-hidden"
+      data-bg-src="/assets/img/bg/client-bg1-1.png"
+      data-overlay="title"
+      data-opacity="9"
+    >
+      <div class="container">
+        <div class="title-area text-center">
+          <span class="sub-title text-white"
+            ><img loading="lazy" decoding="async"
+              src="/assets/img/icon/section-subtitle-icon.svg"
+              alt="img"
+            />Happy Clients</span
+          >
+          <h2 class="sec-title text-white">Our trusted partners</h2>
+        </div>
+        <div
+          class="row global-carousel client-slider1"
+          data-slide-show="5"
+          data-lg-slide-show="4"
+          data-md-slide-show="3"
+          data-sm-slide-show="2"
+        >
+          {
+            sliderLogos.map((logo) => (
+              <div class="col-lg-auto">
+                <div class="client-logo">
+                  <a href="/">
+                    <img loading="lazy" decoding="async" src={logo.src} alt={logo.alt} />
+                  </a>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
     <!--==============================
     Testimonial Area  
     ==============================-->
@@ -749,50 +788,12 @@ const sliderLogos = [...clientLogos, ...clientLogos];
     </div>
     -->
 
-    <!--==============================
-    Client Area  
-    ==============================-->
-    <div
-      class="client-area-1 text-center space overflow-hidden"
-      data-bg-src="/assets/img/bg/client-bg1-1.png"
-      data-overlay="title"
-      data-opacity="9"
-    >
-      <div class="container">
-        <div class="title-area text-center">
-          <span class="sub-title text-white"
-            ><img loading="lazy" decoding="async"
-              src="/assets/img/icon/section-subtitle-icon.svg"
-              alt="img"
-            />Happy Clients</span
-          >
-          <h2 class="sec-title text-white">Our trusted partners</h2>
-        </div>
-        <div
-          class="row global-carousel client-slider1"
-          data-slide-show="5"
-          data-lg-slide-show="4"
-          data-md-slide-show="3"
-          data-sm-slide-show="2"
-        >
-          {
-            sliderLogos.map((logo) => (
-              <div class="col-lg-auto">
-                <div class="client-logo">
-                  <a href="/">
-                    <img loading="lazy" decoding="async" src={logo.src} alt={logo.alt} />
-                  </a>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </div>
+   
 
     <!--==============================
     Blog Area  
     ==============================-->
+    <!-- TODO: Re-enable this blog section when real news content is ready.
     <section class="blog-area-1 space">
       <div
         class="section-animation-shape1-1 shape-mockup animation-infinite"
@@ -1013,6 +1014,7 @@ const sliderLogos = [...clientLogos, ...clientLogos];
         </div>
       </div>
     </section>
+    -->
 
     <!--==============================
         Footer Area
